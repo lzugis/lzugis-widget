@@ -1,0 +1,175 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>china EPSG:4326 image/png</title>
+    <link rel="stylesheet" href="../../../plugin/OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+    <style type="text/css">
+        body { font-family: sans-serif; font-weight: bold; font-size: .8em; }
+        body { border: 0px; margin: 0px; padding: 0px; }
+        #map { width: 100%; height: 100%; border: 0px; padding: 0px; }
+        .query-box{
+            position: absolute;
+            top: 15pt;
+            right: 15pt;
+            z-index:1001;
+            border: 1px solid #ff0000;
+            border-radius: 3px;
+            background: #f2f2f2;
+            padding: 5px 8px;
+            font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+        }
+    </style>
+    <script src="../../../plugin/OpenLayers-2.13.1/OpenLayers.js"></script>
+    <script src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        var map, wfs;
+        function init(){
+            var bounds = new OpenLayers.Bounds(
+                    87.57582859314434, 19.969920291221204,
+                    126.56713756740385, 45.693810203800794
+            );
+            var options = {
+                controls: [],
+                maxExtent: bounds,
+                maxResolution: 0.1523098006807012,
+                projection: "EPSG:4326",
+                units: 'degrees'
+            };
+            map = new OpenLayers.Map('map', options);
+
+            var tiled = new OpenLayers.Layer.WMS(
+                    "province", "http://localhost:8088/geoserver/lzugis/wms",
+                    {
+                        "LAYERS": 'province',
+                        "STYLES": '',
+                        format: 'image/png'
+                    },
+                    {
+                        buffer: 0,
+                        displayOutsideMaxExtent: true,
+                        isBaseLayer: true,
+                        yx : {'EPSG:4326' : true}
+                    }
+            );
+            map.addLayer(tiled);
+            map.addControl(new OpenLayers.Control.PanZoomBar({
+                position: new OpenLayers.Pixel(2, 15)
+            }));
+            map.addControl(new OpenLayers.Control.Navigation());
+            map.zoomToExtent(bounds);
+            wfs = new OpenLayers.Layer.Vector("wfs", {
+                strategies: [new OpenLayers.Strategy.Fixed()],
+                visibility:true,
+                protocol: new OpenLayers.Protocol.WFS({
+                    url: "http://localhost:8088/geoserver/lzugis/wfs?",
+                    featureType: "capital",
+                    featurePrefix : "lzugis",
+                    featureNS: "http://www.lzugis.com.cn",
+                    srsName : "EPSG:4326",
+                    geometryName:"the_geom"
+                })
+            });
+            map.addLayer(wfs);
+            var drawLayer = new OpenLayers.Layer.Vector("drawLayer",{
+                styleMap: new OpenLayers.StyleMap({'default':{
+                    strokeColor: "#ff0000",
+                    strokeOpacity: 1,
+                    strokeWidth: 1,
+                    fillColor: "#000000",
+                    fillOpacity: 0.1
+                }})
+            });
+            map.addLayer(drawLayer);
+            var drawBox = new OpenLayers.Control.DrawFeature(drawLayer,
+                    OpenLayers.Handler.RegularPolygon,{
+                        handlerOptions: {
+                            sides: 4,
+                            irregular: true
+                        }
+                    }
+            );
+            map.addControl(drawBox);
+            drawBox.featureAdded = onEndDrawBox;
+            function onEndDrawBox(feature){
+                drawBox.deactivate();
+                drawCircle.deactivate();
+                var geometry = feature.geometry;
+                var filter = new OpenLayers.Filter.Spatial({
+                    type : OpenLayers.Filter.Spatial.INTERSECTS,
+                    value : geometry,
+                    projection : 'EPSG:4326'
+                });
+                wfs.filter = filter;
+                wfs.refresh();
+                ol2.zoomToExtent(wfs.getDataExtent());
+            }
+            var drawCircle = new OpenLayers.Control.DrawFeature(drawLayer,
+                    OpenLayers.Handler.Point
+                    /*{画正方形
+                        handlerOptions: {
+                            radius : 10,
+                            angle : 0
+                        }
+                    }*/
+            );
+            map.addControl(drawCircle);
+            drawCircle.featureAdded = onEndDrawPoint;
+            function onEndDrawPoint(feature){
+                drawBox.deactivate();
+                drawCircle.deactivate();
+                var geometry = createCircle(feature.geometry,2,100,0);
+                var feature = new OpenLayers.Feature.Vector(geometry);
+                drawLayer.addFeatures(feature);
+                var filter = new OpenLayers.Filter.Spatial({
+                    type : OpenLayers.Filter.Spatial.INTERSECTS,
+                    value : geometry,
+                    projection : 'EPSG:4326'
+                });
+                wfs.filter = filter;
+                wfs.refresh();
+//                ol2.zoomToExtent(wfs.getDataExtent());
+            }
+
+            $("#boxQuery").on("click",function(){
+                drawLayer.removeAllFeatures();
+                wfs.filter = null;
+                wfs.refresh();
+                drawBox.activate();
+            });
+            $("#circleQuery").on("click",function(){
+                drawLayer.removeAllFeatures();
+                wfs.filter = null;
+                wfs.refresh();
+                drawCircle.activate();
+            });
+
+            $("#query").on("click",function(){
+                drawLayer.removeAllFeatures();
+                var field = $("#field").val();
+                var val = $("#val").val();
+                var filter = new OpenLayers.Filter.Comparison({
+                    type : OpenLayers.Filter.Comparison.EQUAL_TO,
+                    property : field,
+                    value : val
+                });
+                wfs.filter = filter;
+                wfs.refresh();
+//                ol2.zoomToExtent(wfs.getDataExtent());
+            });
+        }
+    </script>
+</head>
+<body onLoad="init()">
+<div class="query-box">
+    <select id="field">
+        <option value="code">编码</option>
+        <option value="pinyin">拼音</option>
+    </select>
+    <input type="text" id="val" value="100032" style="width: 80px;"/>&nbsp;
+    <button id="query">属性查询</button>&nbsp;
+    <button id="boxQuery">框选查询</button>
+    <button id="circleQuery">缓冲区查询</button>
+</div>
+<div id="map"></div>
+</body>
+</html>

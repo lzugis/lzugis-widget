@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>openlayers map</title>
+    <link rel="stylesheet" href="http://localhost/olapi/theme/default/style.css" type="text/css">
+    <style>
+        html, body{
+            padding:0;
+            margin:0;
+            height:100%;
+            width:100%;
+            overflow: hidden;
+            font-size: 12px;
+        }
+        #map1{
+            width: 100%;
+            height: 100%;
+            float: left;
+            border-right: 1px solid #000000;
+        }
+    </style>
+    <script src="../../../plugin/OpenLayers-2.13.1/OpenLayers.js"></script>
+    <script src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script>
+        var map1, vectors;
+        OpenLayers.Feature.Vector.style['default']['strokeWidth'] = '2';
+        $(function(){
+            var bounds = new OpenLayers.Bounds(
+                    73.45100463562233, 18.16324718764174,
+                    134.97679764650596, 53.531943152223576
+            );
+            var options = {
+                controls: [],
+                maxExtent: bounds,
+                maxResolution: 0.2403351289487642,
+                projection: "EPSG:4326",
+                units: 'degrees'
+            };
+            map1 = new OpenLayers.Map('map1', options);
+
+            map1.addLayer(getWms("province"));
+            map1.addControl(new OpenLayers.Control.Zoom());
+            map1.addControl(new OpenLayers.Control.Navigation());
+            map1.zoomToExtent(bounds);
+            addVectors();
+        });
+
+        function getWms(layer){
+            return new OpenLayers.Layer.WMS(
+                    "Geoserver layers - Tiled",
+                    "http://localhost:8088/geoserver/lzugis/wms",
+                    {
+                        "LAYERS": layer,
+                        "STYLES": '',
+                        format: 'image/png'
+                    },
+                    {
+                        buffer: 0,
+                        displayOutsideMaxExtent: true,
+                        isBaseLayer: true,
+                        yx : {'EPSG:4326' : true}
+                    }
+            );
+        }
+
+        function addVectors(){
+            var renderer = OpenLayers.Util.getParameters(window.location.href).renderer;
+            renderer = (renderer) ? [renderer] : OpenLayers.Layer.Vector.prototype.renderers;
+            vectors = new OpenLayers.Layer.Vector("Vector Layer", {
+                renderers: renderer
+            });
+            map1.addLayer(vectors);
+            var wkts = [
+                "POINT(107.5758285931443 29.7822116459692)",
+                "LINESTRING(120.18304604073 30.3305841465568,108.805692477062 32.0850224203499)",
+                "POLYGON((102.797302689433 36.5936423859273,105.519115206186 29.4789248520356,100.346180647351 19.9699202912212))"
+            ];
+            var wktFormat = new OpenLayers.Format.WKT();
+            for(var i= 0,dl=wkts.length;i<dl;i++){
+                var geometry = wktFormat.read(wkts[i]);
+                vectors.addFeatures(geometry);
+            }
+
+            var select =  new OpenLayers.Control.SelectFeature(
+                    vectors,
+                    {
+                        clickout: true,
+                        toggle: false,
+                        multiple: false,
+                        hover: false,
+                        toggleKey: "ctrlKey", // ctrl key removes from selection
+                        multipleKey: "shiftKey", // shift key adds to selection
+                        box: true
+                    }
+            );
+            var selecthover = new OpenLayers.Control.SelectFeature(
+                    vectors,
+                    {
+                        hover: true,
+                        highlightOnly:true
+                    }
+            );
+            map1.addControl(selecthover);
+            map1.addControl(select);
+            selecthover.activate();
+            selecthover.events.on({
+                'featurehighlighted': function(feature) {
+                    var sFch = feature.feature;
+                    var pt = sFch.geometry.getBounds().getCenterLonLat();
+                    var scrPt = map1.getPixelFromLonLat(pt);
+                    var div = $("<div />").appendTo($("#map1")).html(scrPt.x+","+scrPt.y).css("position","absolute")
+                            .css("z-index","1001").css("background","#000").css("color","#fff").css("padding","5px 8px")
+                            .css("left",scrPt.x+"px").css("top",scrPt.y+"px").attr("id","div");
+                },
+                'featureunhighlighted': function(feature) {
+                    $("#div").remove();
+                }
+            });
+            select.activate();
+
+            var selected;
+            vectors.events.on({
+                'featureselected': function(feature) {
+                    $("#div").remove();
+                    var selectedFeature = feature.feature;
+                    selected = selectedFeature;
+                    var pt = selectedFeature.geometry.getBounds().getCenterLonLat();
+                    var popup=new OpenLayers.Popup("city",
+                            pt,
+                            new OpenLayers.Size(230,20),
+                            "坐标："+pt.lon+","+pt.lat,
+                            true,
+                            onPopupClose
+                    );
+                    popup.setBorder("1px solid #999");
+                    selectedFeature.popup = popup;
+                    map1.addPopup(popup,true);
+                },
+                'featureunselected': function(feature) {
+                    var selectedFeature = feature.feature;
+                    map1.removePopup(selectedFeature.popup);
+                    selectedFeature.popup=null;
+                }
+            });
+
+            function onPopupClose(){
+                select.unselect(selected);
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="map1"></div>
+</body>
+</html>

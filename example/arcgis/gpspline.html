@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>GP Erase 163</title>
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/esri/css/esri.css">
+    <link type="text/css" href="lib/themes/default/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="lib/themes/icon.css" rel="stylesheet" />
+    <style>
+        html, body, #map {
+            height: 100%; width: 100%; margin: 0; padding: 0;
+        }
+        .toolbar{
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: 1px solid #ccc;
+            z-index: 999;
+            background:#fff;
+            border-radius: 3px;
+            box-shadow: #CCCCCC 1px 1px;
+        }
+        .toolbar div{
+            margin: 3px 3px;
+        }
+        .toolbar div.point, .toolbar div.print,.toolbar div.polygon{
+            background: url("editing_tool_bar.png");
+            width: 25px;
+            height: 24px;
+            float: left;
+        }
+        .toolbar div.point{
+            background-position: -76px 0px;
+        }
+        .toolbar div.point:hover,.toolbar div.point.active{
+            background-position: -76px -24px;
+            cursor: pointer;
+        }
+        .toolbar div.print{
+            background-position: -50px 0px;
+        }
+        .toolbar div.print:hover,.toolbar div.print.active{
+            background-position: -50px -24px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="http://localhost/arcgis_js_api/library/3.9/3.9/init.js"></script>
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.easyui.min.js"></script>
+    <script>
+        var map, tiled, toolbar,gp;
+        dojo.require("esri.tasks.gp");
+        dojo.require("esri.toolbars.draw");
+        require(["esri/map",
+                    "esri/layers/ArcGISTiledMapServiceLayer",
+                    "esri/tasks/PrintTask",
+                    "esri/tasks/PrintTemplate",
+                    "esri/tasks/PrintParameters",
+                    "esri/dijit/Scalebar",
+                    "dojo/domReady!"],
+                function(Map, Tiled, PrintTask,
+                         PrintTemplate,PrintParameters,
+                         Scalebar
+                    ){
+                    map = new Map("map",{logo:false});
+                    tiled = new Tiled("http://localhost:6080/arcgis/rest/services/china_chahe/MapServer");
+                    map.addLayer(tiled);
+                    map.centerAndZoom(new esri.geometry.Point(104.65109867642924,34.543151375838335,{wkid:4326}),1);
+
+                    var scalebar = new Scalebar({ map: map,
+                        attachTo: "bottom-left",
+                        scalebarUnit: "metric"});
+
+                    $("#point").on("click",function(){
+                        $.messager.progress({
+                            text:"计算中，请稍后..."
+                        });
+                        var gpUrl = 'http://localhost:6080/arcgis/rest/services/gp/spline/GPServer/spline';
+                        gp = new esri.tasks.Geoprocessor(gpUrl);
+                        gp.submitJob({},jobResult);
+                    });
+
+                    $("#print").on("click",function(){
+                        var prtUrl = "http://localhost:6080/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task";
+                        var printTask = new PrintTask(prtUrl);
+                        var template = new PrintTemplate();
+//                        template.exportOptions = {
+//                            width: 500,
+//                            height: 400,
+//                            dpi: 96
+//                        };
+                        template.format = "PDF";
+                        template.layout = "MAP_ONLY";
+                        template.preserveScale = true;
+                        var params = new PrintParameters();
+                        params.map = map;
+                        params.template = template;
+                        printTask.execute(params, printResult);
+                    });
+                }
+        );
+        /**
+         * 计算完成
+         * @param result
+         */
+        function jobResult(result) {
+            var jobId = result.jobId;
+            var status = result.jobStatus;
+            if(status === esri.tasks.JobInfo.STATUS_SUCCEEDED) {
+                $.messager.alert("提示","计算成功！");
+                $.messager.progress('close');
+                gp.getResultImageLayer(jobId, null, null, function(gpLayer){
+                    gpLayer.setOpacity(0.7);
+                    map.addLayer(gpLayer);
+                });
+            }
+        }
+
+        function printResult(result){
+            console.log(result.url);
+        }
+    </script>
+</head>
+<body>
+<div id="map">
+    <div id="scaleBarDiv"></div>
+</div>
+<div id="gp" class="toolbar">
+    <div class="point" id="point" title="开始计算"></div>
+    <div class="print" id="print" title="打印地图"></div>
+</div>
+</body>
+</html>

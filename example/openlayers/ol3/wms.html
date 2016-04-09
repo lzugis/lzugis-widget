@@ -1,0 +1,93 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Ol3 wms</title>
+	<link rel="stylesheet" type="text/css" href="../../../plugin/ol3/css/ol.css"/>
+	<style type="text/css">
+		body, #map {
+			border: 0px;
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+			height: 100%;
+			font-size: 13px;
+		}
+	</style>
+	<script type="text/javascript" src="../../../plugin/ol3/build/ol-debug.js"></script>
+	<script type="text/javascript" src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		function init(){
+			var format = 'image/png';
+			var bounds = [73.4510046356223, 18.1632471876417,
+				134.976797646506, 53.5319431522236];
+			var untiled = new ol.layer.Image({
+				source: new ol.source.ImageWMS({
+					ratio: 1,
+					url: 'http://localhost:8088/geoserver/lzugis/wms',
+					params: {'FORMAT': format,
+						'VERSION': '1.1.1',
+						LAYERS: 'lzugis:province',
+						STYLES: ''
+					}
+				})
+			});
+			var tiled = new ol.layer.Tile({
+				visible: true,
+				source: new ol.source.TileWMS({
+					url: 'http://localhost:8088/geoserver/lzugis/wms',
+					params: {'FORMAT': format,
+						'VERSION': '1.1.1',
+						tiled: true,
+						LAYERS: 'lzugis:capital',
+						STYLES: ''
+					}
+				})
+			});
+			var projection = new ol.proj.Projection({
+				code: 'EPSG:4326',
+				units: 'degrees'
+			});
+			var map = new ol.Map({
+				controls: ol.control.defaults({
+					attribution: false
+				}),
+				target: 'map',
+				layers: [
+					untiled,
+					tiled
+				],
+				view: new ol.View({
+					projection: projection
+//					rotation: Math.PI / 6
+				})
+			});
+			map.getView().fitExtent(bounds, map.getSize());
+
+			var visible = new ol.dom.Input(document.getElementById('visible'));
+			visible.bindTo('checked', tiled, 'visible');
+
+			var opacity = new ol.dom.Input(document.getElementById('opacity'));
+			opacity.bindTo('value', tiled, 'opacity')
+					.transform(parseFloat, String);
+			var rotation = new ol.dom.Input(document.getElementById('rotation'));
+			rotation.bindTo('value', map.getView(), 'rotation').transform(parseFloat, String);
+		}
+	</script>
+</head>
+<body onLoad="init()">
+<div id="map">
+	<div id="location"></div>
+	<div style="position: absolute;bottom:10px;right: 10px;border: 1px solid #0000ff; padding: 5px;z-index: 99;background: #ffffff;">
+		<label style="font-weight: bold;font-size: 13px;margin: 3px 0px;">地图控制</label><br>
+		<label class="checkbox" for="visible">
+			<input id="visible" type="checkbox"/>visibility
+		</label>
+		<br>
+		<label>opacity</label>
+		<input id="opacity" type="range" min="0" max="1" step="0.01"/><br>
+		<label>rotation</label>
+		<input id="rotation" type="range" min="-3.141592653589793" max="3.141592653589793" step="0.01"/>
+	</div>
+</div>
+</body>
+</html>

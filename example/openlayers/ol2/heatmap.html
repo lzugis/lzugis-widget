@@ -1,0 +1,136 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>heatmap.js OpenLayers Heatmap Layer</title>
+	<link rel="stylesheet" href="../../../plugin/OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+	<style>
+		html, body, #map{
+			padding:0;
+			margin:0;
+			height:100%;
+			width:100%;
+			overflow: hidden;
+		}
+	</style>
+	<script src="../../../plugin/OpenLayers-2.13.1/OpenLayers.js"></script>
+	<script type="text/javascript" src="extend/heatmap.js"></script>
+	<script type="text/javascript" src="extend/heatmap-openlayers.js"></script>
+	<script type="text/javascript">
+		var map, layer, heatmap;
+		function init(){
+			var testData={
+				max: 3,
+				data: [
+					{name:"乌鲁木齐",lat:43.782225,lon:87.576079,count:1},
+					{name:"拉萨",lat:29.71056,lon:91.163218,count:1},
+					{name:"西宁",lat:36.593725,lon:101.797439,count:1},
+					{name:"兰州",lat:36.119175,lon:103.584421,count:2},
+					{name:"成都",lat:30.714315,lon:104.035634,count:3},
+					{name:"重庆",lat:29.479073,lon:106.519225,count:4},
+					{name:"贵阳",lat:26.457486,lon:106.668183,count:2},
+					{name:"昆明",lat:24.969568,lon:102.726915,count:2},
+					{name:"银川",lat:38.598593,lon:106.167324,count:2},
+					{name:"西安",lat:34.276221,lon:108.967213,count:3},
+					{name:"南宁",lat:22.748502,lon:108.234036,count:3},
+					{name:"海口",lat:19.97015,lon:110.346274,count:3},
+					{name:"广州",lat:23.183277,lon:113.226755,count:4},
+					{name:"长沙",lat:28.170082,lon:112.947996,count:4},
+					{name:"南昌",lat:28.652529,lon:115.893762,count:4},
+					{name:"福州",lat:26.070956,lon:119.246798,count:4},
+					{name:"台北",lat:25.008476,lon:121.503585,count:2},
+					{name:"杭州",lat:30.330742,lon:120.183062,count:4},
+					{name:"上海",lat:31.253514,lon:121.449713,count:5},
+					{name:"武汉",lat:30.579401,lon:114.216652,count:5},
+					{name:"合肥",lat:31.838495,lon:117.262334,count:3},
+					{name:"南京",lat:32.085164,lon:118.805714,count:4},
+					{name:"郑州",lat:34.746419,lon:113.651151,count:4},
+					{name:"济南",lat:36.608511,lon:117.048354,count:4},
+					{name:"石家庄",lat:38.033361,lon:114.478253,count:4},
+					{name:"太原",lat:37.798488,lon:112.483119,count:3},
+					{name:"呼和浩特",lat:40.895807,lon:111.842856,count:3},
+					{name:"天津",lat:38.925801,lon:117.351108,count:4},
+					{name:"沈阳",lat:41.801674,lon:123.29626,count:3},
+					{name:"长春",lat:43.982041,lon:125.261357,count:4},
+					{name:"哈尔滨",lat:45.693857,lon:126.567056,count:3},
+					{name:"北京",lat:39.892297,lon:116.068297,count:5},
+					{name:"香港",lat:22.428066,lon:114.093184,count:2},
+					{name:"澳门",lat:22.18471,lon:113.552554,count:1}
+				]
+			};
+			var transformedTestData = { max: testData.max , data: [] },
+					data = testData.data,
+					datalen = data.length,
+					nudata = [];
+			// in order to use the OpenLayers Heatmap Layer we have to transform our data into
+			// { max: <max>, data: [{lonlat: <OpenLayers.LonLat>, count: <count>},...]}
+			while(datalen--){
+				nudata.push({
+					lonlat: new OpenLayers.LonLat(data[datalen].lon, data[datalen].lat),
+					count: data[datalen].count
+				});
+			}
+			transformedTestData.data = nudata;
+			var format = 'image/png';
+			var bounds = new OpenLayers.Bounds(
+					73.45100463562233, 18.16324718764174,
+					134.97679764650596, 53.531943152223576
+			);
+			var options = {
+				controls: [],
+				maxExtent: bounds,
+				maxResolution: 0.2403351289487642,
+				projection: "EPSG:4326",
+				units: 'degrees'
+			};
+			map = new OpenLayers.Map('map', options);
+			var tiled = new OpenLayers.Layer.WMS(
+					"Geoserver layers - Tiled",
+					"http://localhost:8088/geoserver/lzugis/wms",
+					{
+						"LAYERS": 'province',
+						"STYLES": '',
+						format: format
+					},
+					{
+						buffer: 0,
+						displayOutsideMaxExtent: true,
+						isBaseLayer: true,
+						yx : {'EPSG:4326' : true}
+					}
+			);
+			OpenLayers.INCHES_PER_UNIT["千米"] = OpenLayers.INCHES_PER_UNIT["km"];
+			OpenLayers.INCHES_PER_UNIT["米"] = OpenLayers.INCHES_PER_UNIT["m"];
+			OpenLayers.INCHES_PER_UNIT["英里"] = OpenLayers.INCHES_PER_UNIT["mi"];
+			OpenLayers.INCHES_PER_UNIT["英寸"] = OpenLayers.INCHES_PER_UNIT["ft"];
+			//比例尺
+			map.addControl(new OpenLayers.Control.ScaleLine({topOutUnits:"千米",topInUnits:"米",bottomOutUnits:"英里",
+				bottomInUnits:"英寸"
+			}));
+			map.addControl(new OpenLayers.Control.Zoom());
+			map.addControl(new OpenLayers.Control.Navigation());
+			map.addControl(new OpenLayers.Control.OverviewMap());
+
+			// create our heatmap layer
+			heatmap = new OpenLayers.Layer.Heatmap( "Heatmap Layer",
+					map, tiled,
+					{
+						visible: true,
+						radius:10
+					},
+					{
+						isBaseLayer: false,
+						opacity: 0.3,
+						projection: new OpenLayers.Projection("EPSG:4326")
+					}
+			);
+			map.addLayers([tiled,heatmap]);
+			map.zoomToExtent(bounds);
+			console.log(transformedTestData);
+			heatmap.setDataSet(transformedTestData);
+		}
+	</script>
+</head>
+<body onload="init()">
+<div id="map"></div>
+</body>
+</html>

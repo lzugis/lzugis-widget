@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Easy UI Demo</title>
+    <link type="text/css" href="../../plugin/jquery/easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../plugin/jquery/easyui/themes/icon.css" rel="stylesheet" />
+    <script type="text/javascript" src="../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="../../plugin/jquery/easyui/jquery.easyui.min.js"></script>
+    <script>
+        $(function (){
+        });
+    </script>
+</head>
+<body class="easyui-layout">
+    <div data-options="region:'north',title:'North Title',split:true" style="height:100px;"></div>
+    <div data-options="region:'south',title:'South Title',split:true" style="height:100px;" id="south"></div>
+    <div data-options="region:'east',iconCls:'icon-reload',title:'East',split:true" style="width:100px;"></div>
+    <div data-options="region:'west',title:'West',split:true" style="width:100px;"></div>
+    <div data-options="region:'center',title:'center title'" style="padding:5px;background:#eee;">
+        <div class="easyui-layout" data-options="fit:true">
+            <div data-options="region:'west',collapsed:true" style="width:180px"></div>
+            <div data-options="region:'center',href:'http://172.172.5.3/'"></div>
+        </div>
+    </div>
+</body>
+</html>

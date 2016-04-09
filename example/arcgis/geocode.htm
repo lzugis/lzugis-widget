@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+      <title>ArcGIS API for JavaScript | Simple Geocoding</title>
+      <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/dojo/dijit/themes/claro/claro.css">
+      <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/esri/css/esri.css">
+      <style>
+          html, body, #map {
+              height:100%;
+              width:100%;
+              margin:0;
+              padding:0;
+          }
+          #search {
+              display: block;
+              position: absolute;
+              z-index: 2;
+              top: 20px;
+              left: 74px;
+          }
+      </style>
+      <script src="http://localhost/arcgis_js_api/library/3.9/3.9/init.js"></script>
+      <script>
+          wkid = 3857; //空间参考的代码
+          require([
+              "esri/map", "esri/layers/ArcGISTiledMapServiceLayer", "esri/tasks/locator", "esri/graphic",
+              "esri/geometry/webMercatorUtils","esri/dijit/Geocoder",
+              "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleLineSymbol",
+              "esri/InfoTemplate", "dojo/_base/Color",
+              "dojo/number", "dojo/parser", "dojo/dom", "dijit/registry",
+              "dijit/layout/BorderContainer", "dijit/layout/ContentPane", "dojo/domReady!"
+          ], function(
+                  Map, ArcGISTiledMapServiceLayer, Locator, Graphic,
+                  webMercatorUtils,Geocoder,
+                  SimpleMarkerSymbol, SimpleLineSymbol,
+                  InfoTemplate, Color,
+                  number, parser, dom, registry
+                  ) {
+              parser.parse();
+              // 初始化显示合肥的范围
+              var startExtent = new esri.geometry.Extent({ "xmin": 12989590.2989,
+                  "ymin": 3698591.8336, "xmax": 13122908.9701, "ymax": 3833961.3435,
+                  "spatialReference": { "wkid": wkid}
+              });
+
+              var map = new Map("map",
+                      {
+                          extent: startExtent
+                      });
+              var MyTiledMapServiceLayer = new ArcGISTiledMapServiceLayer("http://cache1.arcgisonline.cn/arcgis/rest/services/ChinaOnlineCommunity/MapServer");
+              map.addLayer(MyTiledMapServiceLayer);
+
+              var geocoder = new Geocoder(
+                      {
+                          arcgisGeocoder: { placeholder: "查询" },
+                          autoComplete: true, //显示自动提示
+                          map: map
+                      }, "search");
+              geocoder.startup();
+
+
+
+              var locator = new Locator("http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer");
+
+              var infoTemplate = new InfoTemplate("Location", "Address: ${Address}");
+              var symbol = new SimpleMarkerSymbol(
+                      SimpleMarkerSymbol.STYLE_CIRCLE,
+                      15,
+                      new SimpleLineSymbol(
+                              SimpleLineSymbol.STYLE_SOLID,
+                              new Color([0, 0, 255, 0.5]),
+                              8
+                      ),
+                      new Color([0, 0, 255])
+              );
+
+              locator.on("location-to-address-complete", function (evt) {
+                  if (evt.address.address) {
+                      var address = evt.address.address;
+                      var location = webMercatorUtils.geographicToWebMercator(evt.address.location);
+                      //this service returns geocoding results in geographic - convert to web mercator to display on map
+                      // var location = webMercatorUtils.geographicToWebMercator(evt.location);
+                      var graphic = new Graphic(location, symbol, address, infoTemplate);
+                      map.graphics.add(graphic);
+
+                      map.infoWindow.setTitle(graphic.getTitle());
+                      map.infoWindow.setContent(graphic.getContent());
+
+                      //display the info window with the address information
+                      var screenPnt = map.toScreen(location);
+                      map.infoWindow.resize(200, 100);
+                      map.infoWindow.show(screenPnt, map.getInfoWindowAnchor(screenPnt));
+                  }
+              });
+
+              map.on("click", function (evt) {
+                  map.graphics.clear();
+                  locator.locationToAddress(webMercatorUtils.webMercatorToGeographic(evt.mapPoint), 100);
+              });
+          });
+      </script>
+  </head>
+  <body>
+    <div id="search"></div>
+    <div id="map"></div>
+  </body>
+</html>
+

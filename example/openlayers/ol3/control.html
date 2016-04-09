@@ -1,0 +1,158 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>control</title>
+	<link rel="stylesheet" type="text/css" href="../../../plugin/ol3/css/ol.css"/>
+
+	<style type="text/css">
+		body, #map {
+			border: 0px;
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+			height: 100%;
+			font-size: 13px;
+			background: #f0e68c;
+		}
+		#location{
+			position: absolute;
+			bottom: 10px;
+			left: 45%;
+			font-weight: bold;
+			z-index: 99;
+		}
+		#switch{
+			position:absolute;
+			right:20pt;
+			top:40pt;
+			z-index:999;
+		}
+		#rotation{
+			position: absolute;
+			top: 10px;
+			left: 45%;
+			font-weight: bold;
+			z-index: 99;
+		}
+		#map .ol-zoom .ol-zoom-out {
+			margin-top: 202px;
+		}
+		#map .ol-zoomslider {
+			background-color: transparent;
+			top: 2.3em;
+		}
+
+		#map .ol-touch .ol-zoom .ol-zoom-out {
+			margin-top: 212px;
+		}
+		#map .ol-touch .ol-zoomslider {
+			top: 2.75em;
+		}
+		.zoom-to-extent{
+			position: absolute;
+			top: 5pt;
+			left: 28pt;
+		}
+		.map-rotate{
+			position: absolute;
+			top: 5pt;
+			left: 45%;
+		}
+	</style>
+	<script type="text/javascript" src="../../../plugin/ol3/build/ol-debug.js"></script>
+	<script type="text/javascript" src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		function init(){
+			var format = 'image/png';
+			var bounds = [73.4510046356223, 18.1632471876417,
+				134.976797646506, 53.5319431522236];
+			var controls = new Array();
+			//鼠标位置
+			var mousePositionControl = new ol.control.MousePosition({
+				className: 'custom-mouse-position',
+				target: document.getElementById('location'),
+				coordinateFormat: ol.coordinate.createStringXY(5),//保留5位小数
+				undefinedHTML: '&nbsp;'
+			});
+			controls.push(mousePositionControl);
+
+			//缩放至范围
+			var zoomToExtentControl = new ol.control.ZoomToExtent({
+				extent: bounds,
+				className: 'zoom-to-extent',
+				tipLabel:"全图"
+			});
+			controls.push(zoomToExtentControl);
+
+			//比例尺
+			var scaleLineControl = new ol.control.ScaleLine({});
+			controls.push(scaleLineControl);
+
+			//全图
+			var fullScreenControl = new ol.control.FullScreen({});
+			controls.push(fullScreenControl);
+
+			//缩放控件
+			var zoomSliderControl = new ol.control.ZoomSlider({});
+			controls.push(zoomSliderControl);
+
+			var rotate = new ol.control.Rotate({
+				label:"↑",
+				tipLabel:"重置",
+				target:document.getElementById('rotation'),
+				autoHide:false
+			});
+			controls.push(rotate);
+
+			var untiled = new ol.layer.Image({
+				source: new ol.source.ImageWMS({
+					ratio: 1,
+					url: 'http://localhost:8088/geoserver/lzugis/wms',
+					params: {'FORMAT': format,
+						'VERSION': '1.1.1',
+						LAYERS: 'lzugis:capital',
+						STYLES: ''
+					}
+				})
+			});
+			var projection = new ol.proj.Projection({
+				code: 'EPSG:4326',
+				units: 'degrees'
+			});
+			var map = new ol.Map({
+				controls: ol.control.defaults({
+					attribution: false
+				}).extend(controls),
+				interactions: ol.interaction.defaults().extend([
+					new ol.interaction.DragRotateAndZoom()
+				]),
+				target: 'map',
+				layers: [
+					untiled
+				],
+				view: new ol.View({
+					projection: projection,
+					rotation:-45
+				})
+			});
+			map.getView().fitExtent(bounds, map.getSize());
+
+			$("#setRotate").on("click",function(){
+				var angle = $("#rotate").val();
+				map.getView().setRotation(angle);
+			});
+		}
+	</script>
+</head>
+<body onLoad="init()">
+<div class="layer-change-switch" id="switch">
+	<div id="slider">
+		<input id="rotate" type="text" value="-45" maxlength="10" style="width: 50px;" /><button id="setRotate">旋转</button>
+	</div>
+</div>
+<div id="map">
+	<div id="rotation"></div>
+	<div id="location"></div>
+</div>
+</body>
+</html>
