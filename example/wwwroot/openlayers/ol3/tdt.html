@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>OpenLayers MapQuest Demo</title>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.15.1/css/ol.css" type="text/css">    
+    <style type="text/css">
+        html, body, #map{
+            padding:0;
+            margin:0;
+            height:100%;
+            width:100%;
+        }
+    </style>
+    <script src="http://openlayers.org/en/v3.15.1/build/ol.js"></script>
+    <script type="text/javascript">
+        var map;
+        function init(){
+            var attribution = new ol.Attribution({
+					html:'<a href="http://www.chinaonmap.com/map/index.html">天地图</a>'
+			});
+			var coor = ol.proj.transform([103.847, 36.0473], 'EPSG:4326', 'EPSG:3857');
+			var view = new ol.View({
+					center:coor,
+					zoom:4
+			});
+			var map = new ol.Map({
+					target:'map',
+					layers:[
+							new ol.layer.Tile({
+									source:new ol.source.XYZ({
+											attributions:[attribution],
+											url:"http://t2.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}"
+									})
+							}),        
+							new ol.layer.Tile({
+									source:new ol.source.XYZ({
+											url: "http://t2.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}"
+									})        
+							})
+					],
+					view:view
+			});
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="map"></div>
+</body>

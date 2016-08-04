@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>OpenLayers MapQuest Demo</title>
+    <link rel="stylesheet" type="text/css" href="http://dev.openlayers.org/theme/default/style.css"/>
+    <script type="text/javascript" src="http://dev.openlayers.org/OpenLayers.js"></script>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="TiandituLayer-src.js"></script>
+    <style type="text/css">
+        html, body, #map{
+            padding:0;
+            margin:0;
+            height:100%;
+            width:100%;
+            overflow: hidden;
+        }
+        .tool{
+            position: absolute;
+            top:10pt;
+            right: 10pt;
+            padding: 5px;
+            background: #fff;
+            border: 1px solid #ff5500;
+            z-index: 1000;
+        }
+    </style>
+    <script type="text/javascript">
+        var map;
+        var poiLayer, extentLayer;
+        function getTdtLayer(type,isbaselyr){
+            var url = "http://t0.tianditu.com/DataServer";
+            return new OpenLayers.Layer.TiandituLayer(type, url,{
+                mapType:type,
+                topLevel: 0,
+                bottomLevel: 18,
+                isBaseLayer:isbaselyr,
+                isOnline:true,
+                mirrorUrls:[
+                    "http://t1.tianditu.com/DataServer",
+                    "http://t2.tianditu.com/DataServer",
+                    "http://t3.tianditu.com/DataServer",
+                    "http://t4.tianditu.com/DataServer",
+                    "http://t5.tianditu.com/DataServer",
+                    "http://t6.tianditu.com/DataServer",
+                    "http://t7.tianditu.com/DataServer"
+                ]
+            });
+        }
+        function init(){
+            var vec_c = getTdtLayer("vec_c",true),//矢量
+                    cva_c = getTdtLayer("cva_c",false);
+
+            map = new OpenLayers.Map({
+                div: "map",
+                projection: "EPSG:4326",
+                layers: [cva_c,vec_c],
+                numZoomLevels:9,
+                center: [116.41467272949, 39.951796313241],
+                zoom: 11
+            });
+            map.addControl(new OpenLayers.Control.LayerSwitcher());
+            map.addControl(new OpenLayers.Control.MousePosition());
+
+            var stylePoi = new OpenLayers.Style({
+                fillColor: "#ff0000",
+                strokeColor: "#00ff00",
+                fillOpacity:0.8,
+                strokeWidth: 1,
+//                label: "${type}",
+//                fontColor: "#333333",
+//                fontFamily: "sans-serif",
+//                fontWeight: "bold",
+                pointRadius: 6
+            });
+            var styleMapPoi = new OpenLayers.StyleMap();
+            var lookupPoi = {
+                "gongyuan1":{fillColor: "#ff0000", strokeColor: "#ffffff",strokeWidth: 1, fillOpacity:0.8,pointRadius: 6},
+                "zhengfujiguan1":{fillColor: "#ff0000", strokeColor: "#ffffff",strokeWidth: 1, fillOpacity:0.8,pointRadius: 6},
+                "xuexiao1":{fillColor: "#00ff00", strokeColor: "#ffffff",strokeWidth: 1, fillOpacity:0.8,pointRadius: 6},
+                "yiyuan1":{fillColor: "#00ff00", strokeColor: "#ffffff",strokeWidth: 1, fillOpacity:0.8,pointRadius: 6},
+                "huochezhan1":{fillColor: "#0000ff", strokeColor: "#ffffff",strokeWidth: 1, fillOpacity:0.8,pointRadius: 6},
+                "dian1":{fillColor: "#000000", strokeColor: "#ffffff",strokeWidth: 1, fillOpacity:0.8,pointRadius: 6},
+                "jiudian1":{fillColor: "#000000", strokeColor: "#ffffff",strokeWidth: 1, fillOpacity:0.8,pointRadius: 6},
+                "bowuguan1":{fillColor: "#ff00ff", strokeColor: "#ffffff",strokeWidth: 1, fillOpacity:0.8,pointRadius: 6}
+            };
+            styleMapPoi.addUniqueValueRules("default", "type", lookupPoi);
+            poiLayer = new OpenLayers.Layer.Vector("poiLayer", {
+                styleMap: new OpenLayers.StyleMap(stylePoi)
+//                styleMap: styleMapPoi
+            });
+
+            var styleExtent = new OpenLayers.Style({
+                fillColor: "#ff0000",
+                strokeColor: "#ff0000",
+                fillOpacity:0.5,
+                strokeWidth: 2
+            });
+            var styleMapExtent = new OpenLayers.StyleMap();
+            var lookupExtent = {
+                "gongyuan1":{fillColor: "#ff0000", strokeColor: "#ff0000",strokeWidth: 1, fillOpacity:0.1},
+                "zhengfujiguan1":{fillColor: "#ff0000", strokeColor: "#ff0000",strokeWidth: 1, fillOpacity:0.1},
+                "xuexiao1":{fillColor: "#00ff00", strokeColor: "#00ff00",strokeWidth: 1, fillOpacity:0.1},
+                "yiyuan1":{fillColor: "#00ff00", strokeColor: "#00ff00",strokeWidth: 1, fillOpacity:0.1},
+                "huochezhan1":{fillColor: "#0000ff", strokeColor: "#0000ff",strokeWidth: 1, fillOpacity:0.1},
+                "dian1":{fillColor: "#000000", strokeColor: "#000000",strokeWidth: 1, fillOpacity:0.1},
+                "jiudian1":{fillColor: "#000000", strokeColor: "#000000",strokeWidth: 1, fillOpacity:0.1},
+                "bowuguan1":{fillColor: "#ff00ff", strokeColor: "#ff00ff",strokeWidth: 1, fillOpacity:0.1}
+            };
+            styleMapExtent.addUniqueValueRules("default", "type", lookupExtent);
+            extentLayer = new OpenLayers.Layer.Vector("extentLayer", {
+                styleMap: new OpenLayers.StyleMap(styleExtent)
+//                styleMap: styleMapExtent
+            });
+            map.addLayer(extentLayer);
+            map.addLayer(poiLayer);
+
+            addTdtPoi();
+            map.events.register("zoomend", map, function(){
+                addTdtPoi();
+            });
+        }
+        function addTdtPoi(){
+            poiLayer.removeAllFeatures();
+            extentLayer.removeAllFeatures();
+            var zoom = map.getZoom();
+            $.get("../data/poi_"+zoom+".json",null,function(result){
+                var featuresPoi = [];
+                var featuresExtent = [];
+                for(var i= 0,rl = result.length;i<rl;i++){
+                    var d = result[i].content;
+                    for(var j= 0,dl= d.length;j<dl;j++){
+                        var dd = d[j];
+                        var poi = new OpenLayers.Geometry.Point(dd.label.x, dd.label.y);
+                        var pbox = dd.pbox;
+                        var extent = new OpenLayers.Geometry.LineString([
+                            new OpenLayers.Geometry.Point(pbox.xmin, pbox.ymin),
+                            new OpenLayers.Geometry.Point(pbox.xmax, pbox.ymin),
+                            new OpenLayers.Geometry.Point(pbox.xmax, pbox.ymax),
+                            new OpenLayers.Geometry.Point(pbox.xmin, pbox.ymax),
+                            new OpenLayers.Geometry.Point(pbox.xmin, pbox.ymin)
+                        ]);
+                        var featurePoi = new OpenLayers.Feature.Vector(poi,dd);
+                        var featureExtent = new OpenLayers.Feature.Vector(extent,dd);
+                        featuresPoi.push(featurePoi);
+                        featuresExtent.push(featureExtent);
+                    }
+                }
+                poiLayer.addFeatures(featuresPoi);
+                extentLayer.addFeatures(featuresExtent);
+            });
+        }
+    </script>
+</head>
+<body onload="init()">
+<div id="map"></div>
+</body>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title></title>
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/esri/css/esri.css">
+    <style type="text/css">
+        html, body, #map {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-size: 62.5%;
+            font-family:"微软雅黑";
+        }
+        .search-box{
+            z-index: 99;
+            position: absolute;
+            top: 120px;
+            left: 10px;
+        }
+        .search-box-title{
+            padding: 6px 10px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: bold;
+            color: #f2f2f2;
+            background: #85b0db;
+            border: 1px solid #85b0db;
+        }
+        .search-box-title:hover{
+            cursor: pointer;
+        }
+        #resultpanel{
+            background: #fff;
+            border: 1px solid #888888;
+            border-top: none;
+            width: 220px;
+            max-height:600px;
+            height:320px;
+            overflow-y: auto;
+        }
+        .search-panel{
+            padding: 8px 10px;
+            border-bottom:1px dotted #999;
+        }
+        .page-control{
+            position: absolute;
+            bottom: 3px;
+            padding: 3px;
+            text-align: center;
+            padding-left: 13px;
+        }
+        .page-control-btn:hover{
+            cursor: pointer;
+        }
+        .result-table{
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .result-table table tr{
+
+        }
+        .result-table table tr:hover{
+            cursor: pointer;
+            background: #ccc;
+        }
+        .result-table table tr.active{
+            background: #ccc;
+        }
+        .result-table table tr td{
+            border-bottom:1px dotted #999;
+            padding: 5px 8px;
+        }
+    </style>
+    <script type="text/javascript">
+        var path = this.location.pathname.replace(/\/[^/]+$/, "");
+        var dojoConfig = {
+            parseOnLoad:true,
+            packages: [{
+                "name": "MapChart",
+                "location": path+"/mapchart"
+            }]
+        };
+    </script>
+    <script src="http://localhost/arcgis_js_api/library/3.9/3.9/init.js"></script>
+    <script src="../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript">
+        var map;
+        var data = [];
+        var currpage = 1,pagesize=10,total = 1000;
+        var pagenum = total/pagesize;
+        if(total/pagesize!=0){
+            pagenum = parseInt(total/pagesize)+1;
+        }
+        require(["dojo/parser",
+                    "dojo/_base/array",
+                    "esri/map",
+                    "esri/layers/ArcGISTiledMapServiceLayer",
+                    "esri/geometry/Point",
+                    "esri/layers/GraphicsLayer",
+                    "MapChart/ClusterLayer",
+                    "esri/graphic",
+                    "esri/symbols/SimpleMarkerSymbol",
+                    "esri/symbols/SimpleLineSymbol",
+                    "esri/symbols/SimpleFillSymbol",
+                    "esri/renderers/ClassBreaksRenderer",
+                    "dojo/_base/Color",
+                    "esri/geometry/webMercatorUtils",
+                    "dojo/domReady!"],
+                function( parser,
+                          arrayUtils,
+                          Map,
+                          Tiled,
+                          Point,
+                          GraphicsLayer,
+                          ClusterLayer,
+                          Graphic,
+                          SimpleMarkerSymbol,
+                          SimpleLineSymbol,
+                          SimpleFillSymbol,
+                          ClassBreaksRenderer,
+                          Color,
+                          webMercatorUtils)
+                {
+                    parser.parse();
+                    map = new Map("map",{logo:false});
+                    var tiled = new Tiled("http://localhost:6080/arcgis/rest/services/china_chahe/MapServer");
+                    map.addLayer(tiled);
+                    var mapCenter = new Point(103.847, 36.0473, {"wkid":4326});
+                    map.centerAndZoom(mapCenter,1);
+                    var gLyr = new GraphicsLayer({"id":"gLyr"});
+                    map.addLayer(gLyr);
+                    var gSearchLyr = new GraphicsLayer({"id":"gSearchLyr"});
+                    map.addLayer(gSearchLyr);
+                    gLyr.on("mouse-over",function(e){
+                        map.setMapCursor("pointer");
+                        var sms = e.graphic.symbol;
+                        sms.url = "images/blue.png";
+                        gLyr.redraw();
+                    });
+                    gLyr.on("mouse-out",function(e){
+                        map.setMapCursor("default");
+                        var sms = e.graphic.symbol;
+                        sms.url = "images/red.png";
+                        gLyr.redraw();
+                    });
+                    gLyr.on("click",function(e){
+                        var attr = e.graphic.attributes;
+                        $("tr").removeClass("active");
+                        $("#tr"+attr.id).addClass("active");
+                        showPointInfo(attr);
+                    });
+                    map.on("load",function(){
+                        data = getRandomXY();
+                        $("#search").show();
+                        showResultTable();
+                        addClusterLayer();
+                    });
+					
+					var clusterLayer;
+					var drawToolbar = new esri.toolbars.Draw(map);
+					drawToolbar.on("draw-end",showResults);
+					$("#drawbtn").on("click",function(){
+                        map.graphics.clear();
+						drawToolbar.activate(esri.toolbars.Draw.EXTENT);
+					});
+					function showResults(extent){
+                        var sfs = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID,
+                                new SimpleLineSymbol(SimpleLineSymbol.STYLE_DASHDOT,
+                                        new Color([255,0,0]),
+                                        2
+                                ),
+                                new Color([255,255,0,0.25])
+                        );
+                        map.graphics.add(new Graphic(extent.geometry, sfs));
+						drawToolbar.deactivate();
+						map.setMapCursor("default");
+						console.log(clusterLayer);
+						var graphics = clusterLayer.graphics;
+						var selectedGraphics = [];
+						var selectCount = 0;
+						for(var i= 0, total=graphics.length;i<total;i++){
+							if(extent.geometry.contains(graphics[i].geometry)){
+								selectedGraphics.push(graphics[i]);	
+								selectCount+=graphics[i].attributes.clusterCount;
+							}
+						}
+						console.log(selectedGraphics);
+						alert("共查询出"+selectCount+"个点");
+					};
+                    $("#searchtitle").on("click",function(){
+                        if($("#resultpanel").is(":visible")){
+                            $("#resultpanel").hide();
+                        }
+                        else{
+                            $("#resultpanel").show();
+                        }
+                    });
+                    $("#searchbtn").on("click",function(){
+                        gSearchLyr.clear();
+                        var searchResult = [];
+                        var keyword = $("#keyword").val();
+                        var start = (currpage-1)*pagesize,end = (currpage*pagesize)-1;
+                        for(var i=start;i<end;i++) {
+                            var d = data[i];
+                            if(d.name === keyword){
+                                searchResult.push(d);
+                                var pt = new Point(data[i].x, data[i].y, {"wkid": 4326});
+                                var pms = new esri.symbol.PictureMarkerSymbol("images/blue.png", 18, 24)
+                                var gImg = new Graphic(pt, pms, data[i]);
+                                gSearchLyr.add(gImg);
+                            }
+                        }
+                        console.log(searchResult);
+                        alert("共查询到"+searchResult.length+"条结果！");
+                    });
+                    $("#prevpage").on("click",function(){
+                        $("#keyword").attr("value","");
+                        if(currpage===1){
+                            alert("第一页");
+                        }
+                        else{
+                            currpage=currpage-1;
+                            $("#pagenum").attr("value",currpage);
+                            showResultTable();
+                        }
+                    });
+                    $("#nextpage").on("click",function(){
+                        $("#keyword").attr("value","");
+                        if(currpage===pagenum){
+                            alert("最后页");
+                        }
+                        else{
+                            currpage=currpage+1;
+                            $("#pagenum").attr("value",currpage);
+                            showResultTable();
+                        }
+                    });
+                    $("#gotopage").on("click",function(){
+                        $("#keyword").attr("value","");
+                        var gotonum = $("#pagenum").val();
+                        if(gotonum < 1){
+                            alert("页数不能小于1");
+                        }
+                        else if(gotonum > pagenum){
+                            alert("页数不能大于"+pagenum);
+                        }
+                        else{
+                            currpage=gotonum;
+                            $("#pagenum").attr("value",currpage);
+                            showResultTable();
+                        }
+                    });
+
+                    function showResultTable(){
+                        $("#result").empty();
+                        gLyr.clear();
+                        var start = (currpage-1)*pagesize,end = (currpage*pagesize)-1;
+                        for(var i=start;i<end;i++) {
+                            var tr = $("<tr />").attr("id","tr"+data[i].id).data("attr",data[i]).appendTo($("#result"));
+                            var name = $("<td />").html(data[i].name).appendTo(tr);
+                            tr.on("click",function(){
+                                $("tr").removeClass("active");
+                                $(this).addClass("active");
+                                var attr = $(this).data("attr");
+                                showPointInfo(attr);
+                            });
+                            var pt = new Point(data[i].x, data[i].y, {"wkid": 4326});
+                            var pms = new esri.symbol.PictureMarkerSymbol("images/red.png", 14, 17)
+                            var gImg = new Graphic(pt, pms, data[i]);
+                            gLyr.add(gImg);
+                        }
+                    }
+                    
+                    function addClusterLayer(){
+                        var clusterData  = {};
+                        clusterData.data = arrayUtils.map(data, function(item) {
+                            var latlng = new  Point(parseFloat(item.x), parseFloat(item.y), map.spatialReference);
+                            var webMercator = webMercatorUtils.geographicToWebMercator(latlng);
+                            var attributes = {
+                                "名称": item.name,
+                                "经度": item.x,
+                                "纬度": item.y
+                            };
+                            return {
+                                "x": webMercator.x,
+                                "y": webMercator.y,
+                                "attributes": attributes
+                            };
+                        });
+                        console.log(clusterData);
+                        clusterLayer = new ClusterLayer({
+                            "data": clusterData.data,
+                            "distance": 25000000,
+                            "id": "clusters",
+                            "labelColor": "#fff",
+                            "labelOffset": -4,
+                            "resolution": map.extent.getWidth() / map.width,
+                            "singleColor": "#f00",
+                            "maxSingles":400
+                        });
+                        var defaultSym = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 5,
+                                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                                        new Color([255,200,0]), 1),
+                                new Color([255,200,0,1]));
+                        var renderer = new ClassBreaksRenderer(defaultSym, "clusterCount");
+                        var style1 = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 10,
+                                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                                        new Color([255,200,0]), 1),
+                                new Color([255,200,0,0.8]));
+                        var style2 = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 25,
+                                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                                        new Color([255,125,3]), 1),
+                                new Color([255,125,3,0.8]));
+                        var style3 = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 30,
+                                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                                        new Color([255,23,58]), 1),
+                                new Color([255,23,58,0.8]));
+                        var style4 = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 35,
+                                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                                        new Color([204,0,184]), 1),
+                                new Color([204,0,184,0.8]));
+                        var style5 = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 40,
+                                new SimpleLineSymbol(SimpleLineSymbol.STYLE_SOLID,
+                                        new Color([0,0,255]), 1),
+                                new Color([0,0,255,0.8]));
+                        renderer.addBreak(0, 10, style1);
+                        renderer.addBreak(10, 50, style2);
+                        renderer.addBreak(50, 100, style3);
+                        renderer.addBreak(100, 200, style4);
+                        renderer.addBreak(200, 500, style5);
+
+                        clusterLayer.setRenderer(renderer);
+                        map.addLayer(clusterLayer);
+                        // close the info window when the map is clicked
+                        map.on("click", cleanUp);
+                        // close the info window when esc is pressed
+                        map.on("key-down", function(e) {
+                            if (e.keyCode === 27) {
+                                cleanUp();
+                            }
+                        });
+                    }
+
+                    function cleanUp() {
+                        map.infoWindow.hide();
+                        clusterLayer.clearSingles();
+                    }
+
+                    function showPointInfo(attr){
+                        var pt=new Point(attr.x,attr.y,{"wkid":4326});
+                        map.infoWindow.setTitle(attr.name);
+                        map.infoWindow.setContent(attr.attribute.desc);
+                        map.infoWindow.resize(200,80);
+                        map.infoWindow.show(pt);
+                        map.centerAndZoom(pt,0);
+                    }
+                    function getRandomXY(){
+                        var bound = map.extent;
+                        var json = new Array();
+                        for(var i=0;i<total;i++){
+                            var w = bound.xmax-bound.xmin;
+                            var h = bound.ymax-bound.ymin;
+                            var x = Math.random() * w + bound.xmin;
+                            var y = Math.random() * h + bound.ymin;
+                            json.push({
+                                name:"name"+(i+1),
+                                x:x,
+                                y:y,
+                                attribute:{
+                                    id:i,
+                                    desc:"this is the name"+(i+1)
+                                }
+                            })
+                        }
+                        return json;
+                    }
+                });
+    </script>
+</head>
+<body>
+<div id="search" class="search-box" style="display: none;">
+    <div id="searchtitle" class="search-box-title">结果列表</div>
+    <div id="resultpanel">
+        <div id="searchbox" class="search-panel">
+            <input id="keyword" type="text" style="width: 120px">
+            <button id="searchbtn">Search</button>
+        </div>
+        <div class="result-table">
+            <table cellpadding="0" cellspacing="0" width="100%" id="result">
+            </table>
+        </div>
+        <div class="page-control">
+            <a id="prevpage" class="page-control-btn">上一页</a>&nbsp;|&nbsp;
+            <a id="nextpage" class="page-control-btn">下一页</a>&nbsp;|&nbsp;
+            <a>转到</a><input id="pagenum" value="1" type="text" style="width: 20px;" />页&nbsp;
+            <a id="gotopage" class="page-control-btn">跳转</a>
+        </div>
+    </div>
+</div>
+<div style="position: absolute;top:10pt;right: 10pt;z-index: 100">
+    <button id="drawbtn">绘图查询</button>
+</div>
+<div id="map">
+</div>
+</body>
+</html>

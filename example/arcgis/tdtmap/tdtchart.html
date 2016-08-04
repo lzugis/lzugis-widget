@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>TianDi Map</title>
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/esri/css/esri.css">
+    <style>
+        html, body, #map {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .base-map{
+            position: absolute;
+            right: 15pt;
+            top:15pt;
+            background: #f0f0f0;
+            border: #96aed1 1px solid;
+            width: auto;
+            height: auto;
+            z-index: 99;
+            font:normal 11px "宋体",Arial;
+            color:#868686;
+        }
+    </style>
+    <script type="text/javascript">
+        dojoConfig = {
+            parseOnLoad: true,
+            packages: [{
+                name: 'tdlib',
+                location: this.location.pathname.replace(/\/[^/]+$/, "")+"/js/tdlib"
+            }]
+        };
+    </script>
+    <script src="http://localhost/arcgis_js_api/library/3.9/3.9/init.js"></script>
+    <script src="js/data.js"></script>
+    <script src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script>
+        var map;
+        require(["esri/map",
+                    "tdlib/TDTTilesLayer",
+                    "tdlib/MapChartGraphic",
+                    "tdlib/MapChartGraphicLayer",
+                    "esri/layers/FeatureLayer",
+                    "esri/geometry/Point",
+                    "esri/SpatialReference",
+                    "dojo/domReady!"],
+                function (Map,
+                          TDTTilesLayer,
+                          MapChartGraphic,
+                          MapChartGraphicLayer,
+                          FeatureLayer,
+                          Point,
+                          SpatialReference
+                ){
+                    map = new Map("map", { logo: false });
+                    var vec_c = new TDTTilesLayer("vec"),//矢量
+                            cva_c = new TDTTilesLayer("cva");//注记
+
+                    map.addLayer(vec_c);
+                    map.addLayer(cva_c);
+                    var pt = new Point(116.51972949218748, 40.11840034046968);
+                    map.centerAndZoom(pt, 7);
+                    $("#chart").on("click",function(){
+                        var chartLayer = new MapChartGraphicLayer({
+                            id:"chartLayer",
+                            chartDiv:"map",
+                            displayOnPan:false
+                        });
+                        map.addLayer(chartLayer);
+                        for(var i= 0,dl=data.length;i<dl;i++){
+                            var series = [data[i].male, data[i].female];
+                            var chartGraphic = new MapChartGraphic({
+                                map:map,
+                                id:data[i].code,
+                                attribute:data[i],
+                                type:"Pie",
+                                series:series,
+                                sr:new SpatialReference(4326)
+                            });
+                            chartLayer.add(chartGraphic);
+                        }
+                    });
+                });
+    </script>
+</head>
+<body>
+<div id="map">
+    <div class="base-map">
+        <button id="chart">Add Chart</button>
+    </div>
+</div>
+</body>
+</html>

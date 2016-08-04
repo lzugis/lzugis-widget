@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type='text/javascript' src='../../plugin/jquery/jquery-1.8.3.js' charset='utf-8'></script>
+</head>
+<body>
+<button id="for">for</button>
+<button id="dowhile">do while</button>
+<button id="while">while</button>
+<button id="forin">forin</button>
+<button id="label">label</button>
+<script>
+    //abdcbdcbdcb
+    $("#for").on("click",function(){
+        var i=0;
+        for(write("a","pfor");write("b","pfor"),i<3;write("c","pfor")){
+            write("d","pfor");
+            i++;
+        }
+    });
+    //abab
+    $("#dowhile").on("click",function(){
+        var i=0;
+        do{
+            write("a","pdowhile");
+            i++;
+        }while(write("b","pdowhile"),i<2);
+    });
+    //ababa
+    $("#while").on("click",function(){
+        var i=0;
+        while(write("a","pwhile"),i<2){
+            write("b","pwhile");
+            i++;
+        }
+    });
+    //
+    $("#forin").on("click",function(){
+        var obj1 = {
+            "a":{"name":"name1"},
+            "b":{"name":"name2"},
+            "c":{"name":"name3"}
+        };
+        var obj2 = [
+            {"name":"name1"},
+            {"name":"name2"},
+            {"name":"name3"}
+        ];
+        for(var i in obj2){
+            var o = obj2[i];
+            console.log(o);
+            write(o.name,"pforin");
+        }
+    });
+    $("#label").on("click",function(){
+        Cal5:
+        for(var i=0;i<10;i++){
+            if(i%5===0){
+                write(i,"plabel");
+                continue Cal5;
+            }
+        }
+    });
+    function write(msg,obj){
+        $("#"+obj).append(msg);
+    }
+</script>
+<h4>for</h4>
+<p id="pfor">计算结果为：</p>
+<h4>Do While</h4>
+<p id="pdowhile">计算结果为：</p>
+<h4>While</h4>
+<p id="pwhile">计算结果为：</p>
+<h4>For In</h4>
+<p id="pforin">计算结果为：</p>
+<h4>Label</h4>
+<p id="plabel">计算结果为：</p>
+</body>
+</html>

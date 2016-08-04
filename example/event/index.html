@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>event</title>
+    <script src="../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script src="../../plugin/event/eventemitter2.js"></script>
+    <script>
+        var emitter = null;
+        $(window).load(function() {
+            var LzuGIS = {
+                EVENT:{}
+            };
+            LzuGIS.EVENT.emitter = new EventEmitter2();
+            LzuGIS.EVENT.emitter.on("SayHello",sayHello);
+            LzuGIS.EVENT.emitter.once("SayHelloOnce",sayHello);
+            function sayHello(name,age){
+                $("#message").append("<h3>Hello "+name+", you are "+age+" old.</h3>");
+            }
+
+            $("#SayHello").on("click",function(){
+                LzuGIS.EVENT.emitter.emit("SayHello","LZUGIS",27);
+            });
+
+            $("#SayHelloOnce").on("click",function(){
+                if(!LzuGIS.EVENT.emitter.emit("SayHelloOnce","LZUGIS",27)){
+                    alert("Sorry, the function 'SayHelloOnce' can only run one time!");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<button id="SayHello">SayHello</button>
+<button id="SayHelloOnce">SayHelloOnce</button>
+<div id="message"></div>
+</body>
+</html>

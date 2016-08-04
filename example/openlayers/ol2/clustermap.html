@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>openlayers map</title>
+    <link rel="stylesheet" href="../../../plugin/OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+    <style>
+        html, body,#map{
+            padding:0;
+            margin:0;
+            height:100%;
+            overflow: hidden;
+        }
+    </style>
+    <script src="../../../plugin/OpenLayers-2.13.1/OpenLayers.js"></script>
+    <script src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script src="data/county.js"></script>
+    <script>
+        var map, strategy, clusters;
+        var features2 = [];
+        $(function(){
+            var bounds = new OpenLayers.Bounds(
+                    73.45100463562233, 18.16324718764174,
+                    134.97679764650596, 53.531943152223576
+            );
+            var mapOptions = {
+                resolutions: [0.703125, 0.3515625, 0.17578125, 0.087890625, 0.0439453125, 0.02197265625, 0.010986328125, 0.0054931640625, 0.00274658203125, 0.001373291015625, 6.866455078125E-4, 3.4332275390625E-4, 1.71661376953125E-4, 8.58306884765625E-5, 4.291534423828125E-5, 2.1457672119140625E-5, 1.0728836059570312E-5, 5.364418029785156E-6, 2.682209014892578E-6, 1.341104507446289E-6, 6.705522537231445E-7, 3.3527612686157227E-7],
+                projection: new OpenLayers.Projection('EPSG:4326'),
+                maxExtent: new OpenLayers.Bounds(-180.0,-90.0,180.0,90.0),
+                units: "degrees",
+                controls: []
+            };
+            map = new OpenLayers.Map('map', mapOptions );
+            map.addLayer(getWms("province"));
+            map.addControl(new OpenLayers.Control.Zoom());
+            map.addControl(new OpenLayers.Control.Navigation());
+            map.zoomToExtent(bounds);
+            addCluster();
+        });
+        function getWms(layer){
+            return new OpenLayers.Layer.WMS(
+                    "Geoserver layers - Tiled",
+                    "http://localhost:8088/geoserver/lzugis/wms",
+                    {
+                        "LAYERS": layer,
+                        "STYLES": '',
+                        format: 'image/png'
+                    },
+                    {
+                        buffer: 0,
+                        displayOutsideMaxExtent: true,
+                        isBaseLayer: true,
+                        yx : {'EPSG:4326' : true}
+                    }
+            );
+        }
+        function addCluster(){
+            if ( countydata != null ) {
+                for (var i = 0; i < countydata.length; i++) {
+                    var county = countydata[i];
+                    var point3 = new OpenLayers.Geometry.Point(county.x, county.y );
+                    var geometry = point3.clone();
+                    var pointFeature3 = new OpenLayers.Feature.Vector(geometry);
+                    pointFeature3.attributes = {
+                        name: county.name
+                    };
+                    features2.push(pointFeature3);
+                }
+            }
+            var style = new OpenLayers.Style({
+                pointRadius: "${radius}",
+                label: "${name}",
+                fontSize: "8px",
+                cursor : "pointer",
+                fontWeight:"bold",
+                fontColor: "#000000",
+                fontFamily:"微软雅黑",
+                fillOpacity: 0.8,
+                strokeColor: "#ff0000",
+                strokeWidth: "1",
+                strokeOpacity: 1
+            }, {
+                context: {
+                    width: function ( feature ) {
+                        return ( feature.cluster ) ? 2 : 1;
+                    },
+                    radius: function ( feature ) {
+                        var pix = 2;
+                        if ( feature.cluster ) {
+                            pix = Math.min( feature.attributes.count, 7 ) + 5;
+                        }
+                        return pix;
+                    },
+                    name: function ( feature ) {
+                        var name;
+                        if ( feature.attributes.count > 1 ) {
+                            name = feature.attributes.count;
+                        } else {
+                            name = feature.cluster[0].attributes.name;
+                        }
+                        return name;
+                    }
+                },rules: [
+                    new OpenLayers.Rule({
+                        // a rule contains an optional filter
+                        filter: new OpenLayers.Filter.Comparison({
+                            type: OpenLayers.Filter.Comparison.LESS_THAN,
+                            property: "count", // the "foo" feature attribute
+                            value: 500
+                        }),
+                        // if a feature matches the above filter, use this symbolizer
+                        symbolizer: {
+                            fillColor: "#2892c7"
+                        }
+                    }),
+                    new OpenLayers.Rule({
+                        filter: new OpenLayers.Filter.Comparison({
+                            type: OpenLayers.Filter.Comparison.BETWEEN,
+                            property: "count",
+                            lowerBoundary: 2,
+                            upperBoundary: 6
+                        }),
+                        symbolizer: {
+                            fillColor: "#a0c29b"
+                        }
+                    }),
+                    new OpenLayers.Rule({
+                        filter: new OpenLayers.Filter.Comparison({
+                            type: OpenLayers.Filter.Comparison.BETWEEN,
+                            property: "count",
+                            lowerBoundary: 500,
+                            upperBoundary: 1000
+                        }),
+                        symbolizer: {
+                            fillColor: "#fafa64"
+                        }
+                    }),
+                    new OpenLayers.Rule({
+                        filter: new OpenLayers.Filter.Comparison({
+                            type: OpenLayers.Filter.Comparison.BETWEEN,
+                            property: "count",
+                            lowerBoundary: 1000,
+                            upperBoundary: 1500
+                        }),
+                        symbolizer: {
+                            fillColor: "#fa8d34"
+                        }
+                    }),
+                    new OpenLayers.Rule({
+                        // apply this rule if no others apply
+                        elseFilter: true,
+                        symbolizer: {
+                            fillColor: "#e81014"
+                        }
+                    })
+                ]
+            });
+            strategy = new OpenLayers.Strategy.Cluster();
+            clusters = new OpenLayers.Layer.Vector( "Clusters", {
+                strategies: [strategy],
+                styleMap: new OpenLayers.StyleMap( {
+                    "default": style,
+                    "select": {
+                        fillColor: "#0000ff",
+                        strokeColor: "#0000ff"
+                    }
+                } )
+            });
+            map.addLayer(clusters);
+            var distance = 150;
+            var threshold = 1;
+            strategy.distance = distance || strategy.distance;
+            strategy.threshold = threshold || strategy.threshold;
+            clusters.addFeatures(features2);
+
+            var vectors = new OpenLayers.Layer.Vector("select",{
+                styleMap: new OpenLayers.StyleMap({
+                    "default": {
+                        fillColor: "#00ffff",
+                        strokeColor: "#00ffff",
+                        pointRadius: "2"
+                    }
+                })
+            });
+            map.addLayer(vectors);
+            var select =  new OpenLayers.Control.SelectFeature(
+                    clusters,
+                    {
+                        clickout: true,
+                        toggle: false,
+                        multiple: false,
+                        hover: false,
+                        toggleKey: "ctrlKey", // ctrl key removes from selection
+                        multipleKey: "shiftKey", // shift key adds to selection
+                        box: false
+                    }
+            );
+            map.addControl(select);
+            select.activate();
+            clusters.events.on({
+                'featureselected': function(feature) {
+                    vectors.removeAllFeatures();
+                    var cluster = feature.feature.cluster;
+                    vectors.addFeatures(cluster);
+                },
+                'featureunselected': function(feature) {
+                    vectors.removeAllFeatures();
+                }
+            });
+            map.events.register("zoomend",map,function(){
+                vectors.removeAllFeatures();
+            });
+        };
+    </script>
+</head>
+<body>
+    <div id="map"></div>
+</body>
+</html>

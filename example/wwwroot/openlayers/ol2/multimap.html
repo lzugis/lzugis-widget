@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>OpenLayers MapQuest Demo</title>
+    <link rel="stylesheet" type="text/css" href="http://dev.openlayers.org/theme/default/style.css"/>
+    <style type="text/css">
+        html, body, .map{
+            padding:0;
+            margin:0;
+            height:100%;
+        }
+        .map{
+            width: 50%;
+            float: left;
+            box-shadow: 1px 1px 1px;
+        }
+    </style>
+    <script type="text/javascript" src="http://dev.openlayers.org/OpenLayers.js"></script>
+    <script type="text/javascript">
+        var map1, map2;
+        function init(){
+            function getBaseLayer(layername, layer){
+                return new OpenLayers.Layer.XYZ(
+                        layername,
+                        [
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}"
+
+                        ],
+                        {
+                            isBaseLayer: true,
+                            displayInLayerSwitcher:true
+                        }
+                );
+            };
+            function getAnnoLayer(layername, layer, visiable){
+                return new OpenLayers.Layer.XYZ(
+                        layername,
+                        [
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}",
+                            "http://t0.tianditu.com/DataServer?T="+layer+"&X=${x}&Y=${y}&L=${z}"
+
+                        ],
+                        {
+                            isBaseLayer: false,
+                            visibility:visiable,
+                            displayInLayerSwitcher:false
+                        }
+                );
+            };
+
+            var baseLayers = ["vec_c","img_c"];
+            var vecLayer = getBaseLayer("vec",baseLayers[0]);
+            var imgLayer = getBaseLayer("img",baseLayers[1]);
+            var vecAnno1 = getAnnoLayer("cva", "cva_c", true);
+            var vecAnno2 = getAnnoLayer("cva", "cva_c", true);
+            var mousepos2 = new OpenLayers.Layer.Markers("mousepos");
+
+            map1 = new OpenLayers.Map({
+                div: "map1",
+                projection: "EPSG:4326",
+                layers: [vecLayer, vecAnno1],
+                numZoomLevels:20,
+                center: [103.847, 36.0473],
+                zoom: 4
+            });
+            map2 = new OpenLayers.Map({
+                div: "map2",
+                projection: "EPSG:4326",
+                layers: [imgLayer, vecAnno2, mousepos2],
+                numZoomLevels:20,
+                center: [103.847, 36.0473],
+                zoom: 4
+            });
+            map1.events.register("move", map1, function(evt){ 
+                var extent = map1.getExtent();
+                map2.zoomToExtent(extent, true);
+            });
+            map1.events.register("mousemove", map1, function(evt){ 
+                mousepos2.clearMarkers();               
+                var scrPt = evt.xy;
+                var mapPt = map1.getLonLatFromPixel(scrPt);
+                var marker = new OpenLayers.Marker(mapPt);
+                mousepos2.addMarker(marker);
+            });
+        }
+    </script>
+</head>
+<body onload="init()">
+    <div id="map1" class="map"></div>
+    <div id="map2" class="map"></div>
+</body>

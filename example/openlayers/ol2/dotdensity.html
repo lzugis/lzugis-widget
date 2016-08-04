@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title> </title>
+		<link rel="stylesheet" href="../../../plugin/OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+		<style>
+			html, body, #map{
+				padding:0;
+				margin:0;
+				height:100%;
+				width:100%;
+				overflow: hidden;
+			}
+			.tool{
+				position: absolute;
+				top:10pt;
+				right: 10pt;
+				padding: 5px;
+				background: #fff;
+				border: 1px solid #ff5500;
+				z-index: 1000;
+			}
+		</style>
+		<script src="../../../plugin/OpenLayers-2.13.1/OpenLayers.js"></script>
+		<script src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+		<script>
+			var map;
+			$(function(){
+				var bounds = new OpenLayers.Bounds(
+						87.57582859314434, 19.969920291221204,
+						126.56713756740385, 45.693810203800794
+				);
+				var options = {
+					controls: [],
+					maxExtent: bounds,
+					maxResolution: 0.1523098006807012,
+					projection: "EPSG:4326",
+					units: 'degrees'
+				};
+				map = new OpenLayers.Map('map', options);
+
+				var tiled = new OpenLayers.Layer.WMS(
+						"province", "http://localhost:8088/geoserver/lzugis/wms",
+						{
+							"LAYERS": 'province',
+							"STYLES": '',
+							format: 'image/png'
+						},
+						{
+							buffer: 0,
+							displayOutsideMaxExtent: true,
+							isBaseLayer: true,
+							yx : {'EPSG:4326' : true}
+						}
+				);
+				map.addLayer(tiled);
+				map.addControl(new OpenLayers.Control.Zoom());
+				map.addControl(new OpenLayers.Control.Navigation());
+				map.zoomToExtent(bounds);
+
+				$("#button").on("click", function(){
+					addHeatMap();
+				});
+			});
+			function addHeatMap(){			
+				var myStyles = new OpenLayers.StyleMap({
+					"default": new OpenLayers.Style({
+						pointRadius: "${count}", // sized according to type attribute
+						fillColor: "#ff0000",
+						strokeColor: "#ff9933",
+						strokeWidth: 2,
+						graphicZIndex: 1,
+						fillOpacity:0.5,
+						label: "${count}",
+						fontColor:"#ffffff",
+						fontWeight:"bold",
+						fontFamily:"微软雅黑",
+						fontSize:"12"
+					})
+				});
+				
+				// Create a vector layer and give it your style map.
+				var points = new OpenLayers.Layer.Vector("Points", {
+					styleMap: myStyles,
+					rendererOptions: {zIndexing: true}
+				});
+				var data = [
+					{name:"乌鲁木齐",lat:43.782225,lon:87.576079,count:10},
+					{name:"拉萨",lat:29.71056,lon:91.163218,count:10},
+					{name:"西宁",lat:36.593725,lon:101.797439,count:10},
+					{name:"兰州",lat:36.119175,lon:103.584421,count:20},
+					{name:"成都",lat:30.714315,lon:104.035634,count:30},
+					{name:"重庆",lat:29.479073,lon:106.519225,count:40},
+					{name:"贵阳",lat:26.457486,lon:106.668183,count:20},
+					{name:"昆明",lat:24.969568,lon:102.726915,count:20},
+					{name:"银川",lat:38.598593,lon:106.167324,count:20},
+					{name:"西安",lat:34.276221,lon:108.967213,count:30},
+					{name:"南宁",lat:22.748502,lon:108.234036,count:30},
+					{name:"海口",lat:19.97015,lon:110.346274,count:30},
+					{name:"广州",lat:23.183277,lon:113.226755,count:40},
+					{name:"长沙",lat:28.170082,lon:112.947996,count:40},
+					{name:"南昌",lat:28.652529,lon:115.893762,count:40},
+					{name:"福州",lat:26.070956,lon:119.246798,count:40},
+					{name:"台北",lat:25.008476,lon:121.503585,count:20},
+					{name:"杭州",lat:30.330742,lon:120.183062,count:40},
+					{name:"上海",lat:31.253514,lon:121.449713,count:50},
+					{name:"武汉",lat:30.579401,lon:114.216652,count:50},
+					{name:"合肥",lat:31.838495,lon:117.262334,count:30},
+					{name:"南京",lat:32.085164,lon:118.805714,count:40},
+					{name:"郑州",lat:34.746419,lon:113.651151,count:40},
+					{name:"济南",lat:36.608511,lon:117.048354,count:40},
+					{name:"石家庄",lat:38.033361,lon:114.478253,count:40},
+					{name:"太原",lat:37.798488,lon:112.483119,count:30},
+					{name:"呼和浩特",lat:40.895807,lon:111.842856,count:30},
+					{name:"天津",lat:38.925801,lon:117.351108,count:40},
+					{name:"沈阳",lat:41.801674,lon:123.29626,count:30},
+					{name:"长春",lat:43.982041,lon:125.261357,count:40},
+					{name:"哈尔滨",lat:45.693857,lon:126.567056,count:30},
+					{name:"北京",lat:39.892297,lon:116.068297,count:50},
+					{name:"香港",lat:22.428066,lon:114.093184,count:20},
+					{name:"澳门",lat:22.18471,lon:113.552554,count:10}
+				];
+				var features = new Array(data.length);
+				for (var i=0; i<features.length; i++) {
+					var d = data[i];
+					features[i] = new OpenLayers.Feature.Vector(
+						new OpenLayers.Geometry.Point(d.lon, d.lat),d
+					);
+				}
+				points.addFeatures(features);
+				map.addLayer(points);
+			}
+		</script>
+	</head>
+	<body>
+	<div class="tool">
+		<button id="button">添加统计图</button>
+	</div>
+	<div id="map"> </div>
+	</body>
+</html>

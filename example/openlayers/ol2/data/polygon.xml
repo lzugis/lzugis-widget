@@ -1,0 +1,560 @@
+<?xml version="1.0" encoding="GBK"?>
+<sld:StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:sld="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:gml="http://www.opengis.net/gml" version="1.0.0">
+    <sld:NamedLayer>
+        <sld:Name>polygon</sld:Name>
+        <sld:UserStyle>
+            <sld:Name>Default Styler</sld:Name>
+            <sld:Title/>
+            <sld:FeatureTypeStyle>
+                <sld:Name>name</sld:Name>
+                <sld:FeatureTypeName>Feature</sld:FeatureTypeName>
+                <sld:SemanticTypeIdentifier>generic:geometry</sld:SemanticTypeIdentifier>
+                <sld:SemanticTypeIdentifier>colorbrewer:unique:corinne</sld:SemanticTypeIdentifier>
+                <sld:Rule>
+                    <sld:Name>rule01</sld:Name>
+                    <sld:Title>110000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>110000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E6004D</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule02</sld:Name>
+                    <sld:Title>120000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>120000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#FF0000</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule03</sld:Name>
+                    <sld:Title>130000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>130000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#CC4DF2</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule04</sld:Name>
+                    <sld:Title>140000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>140000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#CC0000</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule05</sld:Name>
+                    <sld:Title>150000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>150000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E6CCCC</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule06</sld:Name>
+                    <sld:Title>210000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>210000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E6CCE6</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule07</sld:Name>
+                    <sld:Title>220000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>220000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#A600CC</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule08</sld:Name>
+                    <sld:Title>230000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>230000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#A64D00</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule09</sld:Name>
+                    <sld:Title>310000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>310000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#FF4DFF</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule10</sld:Name>
+                    <sld:Title>320000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>320000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#FFA6FF</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule11</sld:Name>
+                    <sld:Title>330000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>330000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#FFE6FF</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule12</sld:Name>
+                    <sld:Title>340000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>340000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#FFFFA8</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule13</sld:Name>
+                    <sld:Title>350000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>350000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#FFFF00</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule14</sld:Name>
+                    <sld:Title>360000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>360000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E6E600</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule15</sld:Name>
+                    <sld:Title>370000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>370000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E68000</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule16</sld:Name>
+                    <sld:Title>410000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>410000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#F2A64D</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule17</sld:Name>
+                    <sld:Title>420000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>420000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E6A600</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule18</sld:Name>
+                    <sld:Title>430000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>430000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E6E64D</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule19</sld:Name>
+                    <sld:Title>440000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>440000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#FFE6A6</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule20</sld:Name>
+                    <sld:Title>450000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>450000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#FFE64D</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule21</sld:Name>
+                    <sld:Title>460000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>460000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E6CC4D</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule22</sld:Name>
+                    <sld:Title>500000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>500000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#F2CCA6</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule23</sld:Name>
+                    <sld:Title>510000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>510000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#80FF00</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule24</sld:Name>
+                    <sld:Title>520000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>520000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#00A600</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule25</sld:Name>
+                    <sld:Title>530000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>530000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#4DFF00</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule26</sld:Name>
+                    <sld:Title>540000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>540000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#CCF24D</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule27</sld:Name>
+                    <sld:Title>610000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>610000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#A6FF80</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule28</sld:Name>
+                    <sld:Title>620000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>620000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#A6E64D</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule29</sld:Name>
+                    <sld:Title>630000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>630000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#A6F200</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule30</sld:Name>
+                    <sld:Title>640000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>640000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#E6E6E6</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule31</sld:Name>
+                    <sld:Title>650000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>650000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#CCCCCC</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule32</sld:Name>
+                    <sld:Title>710000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>710000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#CCFFCC</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule33</sld:Name>
+                    <sld:Title>810000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>810000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#000000</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+                <sld:Rule>
+                    <sld:Name>rule34</sld:Name>
+                    <sld:Title>820000</sld:Title>
+                    <ogc:Filter>
+                        <ogc:PropertyIsEqualTo>
+                            <ogc:PropertyName>dzm</ogc:PropertyName>
+                            <ogc:Literal>820000</ogc:Literal>
+                        </ogc:PropertyIsEqualTo>
+                    </ogc:Filter>
+                    <sld:PolygonSymbolizer>
+                        <sld:Fill>
+                            <sld:CssParameter name="fill">#A6E6CC</sld:CssParameter>
+                            <sld:CssParameter name="fill-opacity">0.5</sld:CssParameter>
+                        </sld:Fill>
+                    </sld:PolygonSymbolizer>
+                </sld:Rule>
+            </sld:FeatureTypeStyle>
+        </sld:UserStyle>
+    </sld:NamedLayer>
+</sld:StyledLayerDescriptor>

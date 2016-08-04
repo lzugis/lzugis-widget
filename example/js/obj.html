@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type='text/javascript' src='../../plugin/jquery/jquery-1.8.3.js' charset='utf-8'></script>
+</head>
+<body>
+<button id="newObj">newObj</button>
+<script>
+    //1.
+    (function($){
+        $.fn.LzuGis1 = {
+            name:"",
+            age:0,
+            sex:"male",
+            id:"lg1",
+            _obj:null,
+            init:function(obj,options){
+                for(var opt in options){
+                    this[opt] =options[opt];
+                }
+                this._obj = obj;
+                this._obj.append(this.name);
+                return this;
+            }
+        };
+    })(jQuery);
+    //2.
+    (function($){
+        $.fn.LzuGis2 = function(options){
+            var defaults = {
+                name:"",
+                age:0,
+                sex:"male"
+            };
+            var options = $.extend(defaults, options);
+            var _this = $(this);
+            function _init(){
+                _this.append(options.name);
+            };
+            this.init = _init;
+            return this;
+        };
+    })(jQuery);
+    //3.
+    var LzuGis = {
+        plugin:{}
+    };
+    LzuGis.plugin.LzuGis3 = function(obj, options){
+        for(var opt in options){
+            this[opt] =options[opt];
+        }
+        var _obj = obj;
+        this.init = function(){
+            _obj.append(this.getName());
+        }
+        this.getName = function(){
+            return this.name;
+        }
+    };
+    /**
+     * 4.面向对象
+     */
+    //工厂模式
+    function getPerson(name,age){
+        //定义age不能直接访问
+        var person = {
+            name:name,
+            _age:age,
+            getName:function(){
+                return this.name;
+            }
+        };
+        Object.defineProperties(person,{
+            _age:{
+                value:age
+            },
+            age:{
+                get:function(){
+                    return this._age;
+                },
+                set:function(age){
+                    this._age = age;
+                }
+            }
+
+        });
+        return person;
+    }
+    //构造函数模式
+    function Person(name,age){
+        this.name = name;
+        this.age = age;
+        this.getName = getName;
+    }
+    function getName(){
+        return this.name;
+    }
+    //原型模式
+    function People(){};
+    People.prototype = {
+        name:"",
+        age:0,
+        getName:getName
+    }
+    //*构造函数+原型模式*//
+    function Student(name,age){
+        this.name = name;
+        this.age = age;
+    }
+    Student.prototype ={
+        constructor:Student,
+        getName:getName
+    }
+
+    $("#newObj").on("click",function(){
+        var lg1 =$.fn.LzuGis1.init($("#lg1"),{
+            name:"lzugis1",
+            age:10,
+            sex:"nale"
+        });
+        console.log(lg1);
+
+        var lg2 =$("#lg2").LzuGis2({
+            name:"lzugis2",
+            age:10,
+            sex:"nale"
+        });
+        lg2.init();
+        console.log(lg2);
+
+        var lg3 = new LzuGis.plugin.LzuGis3($("#lg3"),{
+            name:"lzugis3",
+            age:10,
+            sex:"male",
+            id:"lg3"
+        });
+        lg3.init();
+        console.log(lg3);
+
+        //构造函数模式
+        var p1 = new Person("person1",12);
+        console.log(p1.getName());
+        //工厂模式
+        var p2 = getPerson("person2",12);
+        console.log(p2.getName());
+        //原型模式
+        var p3 = new People();
+        p3.age = 12;
+        p3.name="person3";
+        console.log(p3.getName());
+        console.log("sex" in p3);
+        //*构造函数+原型*
+        var stu = new Student("student",18);
+        console.log(stu.getName());
+    });
+
+</script>
+<div id="lg1"></div>
+<div id="lg2"></div>
+<div id="lg3"></div>
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>openlayers map</title>
+    <link rel="stylesheet" href="../../../plugin/OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+    <style>
+        html, body, #map{
+            padding:0;
+            margin:0;
+            height:100%;
+            width:100%;
+            overflow: hidden;
+        }
+    </style>
+    <script src="../../../plugin/OpenLayers-2.13.1/OpenLayers.js"></script>
+    <script src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script>
+        var map;
+        var tiled;
+        OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
+        OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
+        $(window).load(function() {
+            var format = 'image/png';
+            var bounds = new OpenLayers.Bounds(
+                    73.45100463562233, 18.16324718764174,
+                    134.97679764650596, 53.531943152223576
+            );
+            var options = {
+                controls: [],
+                maxExtent: bounds,
+                maxResolution: 0.2403351289487642,
+                projection: "EPSG:4326",
+                units: 'degrees'
+            };
+            map = new OpenLayers.Map('map', options);
+            tiled = new OpenLayers.Layer.WMS(
+                    "Geoserver layers - Tiled",
+                    "http://localhost:8088/geoserver/lzugis/wms",
+                    {
+                        "LAYERS": 'province',
+                        "STYLES": '',
+                        format: format
+                    },
+                    {
+                        buffer: 0,
+                        displayOutsideMaxExtent: true,
+                        isBaseLayer: true,
+                        yx : {'EPSG:4326' : true}
+                    }
+            );
+            map.addLayers([tiled]);
+            OpenLayers.INCHES_PER_UNIT["千米"] = OpenLayers.INCHES_PER_UNIT["km"];
+            OpenLayers.INCHES_PER_UNIT["米"] = OpenLayers.INCHES_PER_UNIT["m"];
+            OpenLayers.INCHES_PER_UNIT["英里"] = OpenLayers.INCHES_PER_UNIT["mi"];
+            OpenLayers.INCHES_PER_UNIT["英寸"] = OpenLayers.INCHES_PER_UNIT["ft"];
+            //比例尺
+            map.addControl(new OpenLayers.Control.ScaleLine({topOutUnits:"千米",topInUnits:"米",bottomOutUnits:"英里",
+                bottomInUnits:"英寸"
+            }));
+            map.addControl(new OpenLayers.Control.Zoom());
+            map.addControl(new OpenLayers.Control.Navigation());
+            map.addControl(new OpenLayers.Control.OverviewMap());
+            map.zoomToExtent(bounds);
+            var styleMap = new OpenLayers.StyleMap(null,{
+                "select": new OpenLayers.Style({
+                    fillColor: "#ffffff",
+                    strokeColor: "#00ffff",
+                    graphicZIndex: 2,
+                    opacity:0
+                })
+            });
+            var lookup = {
+                "230000":{fillColor: "#386d2c", strokeColor: "#ffffff",strokeWidth: 1},
+                "650000":{fillColor: "#db152e", strokeColor: "#ffffff",strokeWidth: 1},
+                "140000":{fillColor: "#7615d8", strokeColor: "#ffffff",strokeWidth: 1},
+                "640000":{fillColor: "#7e3c72", strokeColor: "#ffffff",strokeWidth: 1},
+                "540000":{fillColor: "#2482b4", strokeColor: "#ffffff",strokeWidth: 1},
+                "370000":{fillColor: "#db79f6", strokeColor: "#ffffff",strokeWidth: 1},
+                "410000":{fillColor: "#9841fc", strokeColor: "#ffffff",strokeWidth: 1},
+                "320000":{fillColor: "#05bc8c", strokeColor: "#ffffff",strokeWidth: 1},
+                "340000":{fillColor: "#81fac1", strokeColor: "#ffffff",strokeWidth: 1},
+                "420000":{fillColor: "#68e436", strokeColor: "#ffffff",strokeWidth: 1},
+                "330000":{fillColor: "#6f7d48", strokeColor: "#ffffff",strokeWidth: 1},
+                "360000":{fillColor: "#9f7083", strokeColor: "#ffffff",strokeWidth: 1},
+                "430000":{fillColor: "#48c89c", strokeColor: "#ffffff",strokeWidth: 1},
+                "530000":{fillColor: "#e0d9a7", strokeColor: "#ffffff",strokeWidth: 1},
+                "520000":{fillColor: "#25e635", strokeColor: "#ffffff",strokeWidth: 1},
+                "350000":{fillColor: "#78bcde", strokeColor: "#ffffff",strokeWidth: 1},
+                "450000":{fillColor: "#b8c7e9", strokeColor: "#ffffff",strokeWidth: 1},
+                "440000":{fillColor: "#451cd3", strokeColor: "#ffffff",strokeWidth: 1},
+                "460000":{fillColor: "#bad932", strokeColor: "#ffffff",strokeWidth: 1},
+                "220000":{fillColor: "#3d57ff", strokeColor: "#ffffff",strokeWidth: 1},
+                "210000":{fillColor: "#dca16f", strokeColor: "#ffffff",strokeWidth: 1},
+                "120000":{fillColor: "#eb7131", strokeColor: "#ffffff",strokeWidth: 1},
+                "630000":{fillColor: "#beb4c0", strokeColor: "#ffffff",strokeWidth: 1},
+                "620000":{fillColor: "#449338", strokeColor: "#ffffff",strokeWidth: 1},
+                "610000":{fillColor: "#7dd64c", strokeColor: "#ffffff",strokeWidth: 1},
+                "150000":{fillColor: "#3e9c10", strokeColor: "#ffffff",strokeWidth: 1},
+                "500000":{fillColor: "#cf4d49", strokeColor: "#ffffff",strokeWidth: 1},
+                "130000":{fillColor: "#fd1253", strokeColor: "#ffffff",strokeWidth: 1},
+                "310000":{fillColor: "#7ea79a", strokeColor: "#ffffff",strokeWidth: 1},
+                "110000":{fillColor: "#eb01b6", strokeColor: "#ffffff",strokeWidth: 1},
+                "710000":{fillColor: "#97d24c", strokeColor: "#ffffff",strokeWidth: 1},
+                "810000":{fillColor: "#46d4e7", strokeColor: "#ffffff",strokeWidth: 1},
+                "820000":{fillColor: "#09158f", strokeColor: "#ffffff",strokeWidth: 1},
+                "510000":{fillColor: "#583957", strokeColor: "#ffffff",strokeWidth: 1}
+            };
+            styleMap.addUniqueValueRules("default", "dzm", lookup);
+            var vector_layer = new OpenLayers.Layer.Vector("pro",{
+                styleMap: styleMap
+            });
+            map.addLayer(vector_layer);
+            $("#geojson").on("click",function(){
+                $.get("data/province.geojson",null,function(result){
+                    result = eval("("+result+")");
+                    var geojson_format = new OpenLayers.Format.GeoJSON();
+                    vector_layer.addFeatures(geojson_format.read(result));
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="map">
+    <div style="position: absolute;top: 10pt;right: 10pt;z-index: 999;background: #fff;border: 1px solid #f00;padding: 10px;">
+        <button id="geojson">Unique Value Render</button>
+    </div>
+</div>
+</body>
+</html>

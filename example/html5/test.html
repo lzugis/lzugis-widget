@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>H5地理位置Demo</title>
+</head>
+<body>
+<script type="text/javascript">
+    if(navigator.geolocation)
+    {
+        navigator.geolocation.getCurrentPosition(function (p) {
+                    var latitude = p.coords.latitude//纬度
+                    var longitude = p.coords.longitude;
+                    alert(latitude);
+                },
+                function (e) {//错误信息
+                    var aa = e.code + "\n" + e.message;
+                    alert(aa);
+                }
+        );
+    }
+</script>
+</body>
+</html>

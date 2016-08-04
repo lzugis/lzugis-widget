@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>地图显示</title>
+    <style type="text/css">
+        body{margin:0;height:100%;width:100%;position:absolute;}
+        #mapContainer{height:100%;width:100%;}
+    </style>
+</head>
+<body>
+<div id="mapContainer"></div>
+
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.3&key=c75f01380ea16f3dabd62bd052653e30"></script>
+<script type="text/javascript">
+    (function(exports){
+
+        var map = new AMap.Map('mapContainer', {
+            resizeEnable: true,
+            rotateEnable: true,
+            dragEnable: true,
+            zoomEnable: true,
+            //设置可缩放的级别
+            zooms: [3,18],
+            //传入2D视图，设置中心点和缩放级别
+            view: new AMap.View2D({
+                center: new AMap.LngLat(116.397428, 39.90923),
+                zoom: 5
+            })
+        });
+
+        //以下为缩放逻辑代码块，地图的最小级别不能小于4
+        //跟逻辑块相关的变量定义，定义在逻辑块最前部
+        var MIN_ZOOM = 4;
+        function setZoom(zoom){
+            if(zoom >= MIN_ZOOM)
+                map.setZoom(zoom);
+        }
+
+        setZoom(10);
+
+    })(window);
+</script>
+</body>
+</html>

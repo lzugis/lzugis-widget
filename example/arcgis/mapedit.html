@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Hello Map</title>
+    <link rel="stylesheet" href="http://localhost/arcgis_js_v311_api/arcgis_js_api/library/3.11/3.11/esri/css/esri.css">
+    <link type="text/css" href="lib/themes/default/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="lib/themes/icon.css" rel="stylesheet" /><style>
+    html, body, #map {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .edit-box{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 100;
+        }
+    </style>
+    <script src="http://localhost/arcgis_js_v311_api/arcgis_js_api/library/3.11/3.11/init.js"></script>
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/jquery.easyui.min.js"></script>
+    <script>
+        var map;
+        var addFeatures = "http://172.24.3.163:6080/arcgis/rest/services/gp/chinamap/FeatureServer/0/addFeatures?f=pjson";
+        var delFeatures = "http://172.24.3.163:6080/arcgis/rest/services/gp/chinamap/FeatureServer/0/deleteFeatures?f=pjson";
+
+        require([ "esri/map",
+            "esri/layers/ArcGISTiledMapServiceLayer",
+            "esri/layers/FeatureLayer",
+            "esri/toolbars/draw",
+            "esri/toolbars/edit",
+            "dojo/domReady!"
+        ],
+        function(Map,
+            Tiled,
+            FeatureLayer,
+            Draw,
+            Edit){
+            map = new Map("map",{
+                logo:false
+            });
+            var tiled = new Tiled("http://172.24.3.163:6080/arcgis/rest/services/gp/china_tile/MapServer");    
+            map.addLayer(tiled);    
+            var ftch = new FeatureLayer("http://172.24.3.163:6080/arcgis/rest/services/gp/chinamap/MapServer/0",{
+                outFields:"*"
+            });
+            map.addLayer(ftch);
+            var mapCenter = new esri.geometry.Point(103.847, 36.0473, map.spatialReference);
+            map.centerAndZoom(mapCenter,0);
+
+            ftch.on("click",function(evt){               
+                var g = evt.graphic;                
+                var id = g.attributes.OBJECTID;
+                var delData = {
+                    "objectIds":id
+                };
+                $.post(delFeatures,delData,function(result){                       
+                    result = eval("("+result+")");
+                    console.log(result); 
+                    map.centerAndZoom(mapCenter,0);                      
+                });   
+            });
+
+            var draw = new Draw(map);
+            draw.on("draw-end",drawEnd);
+
+            var edit = new Edit(map);
+
+            $("#editbtn").on("click",function(){
+                draw.activate(esri.toolbars.Draw.POINT);
+            });              
+
+
+            function drawEnd(evt){
+                var geo = evt.geometry;
+                var sms = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_CIRCLE, 10,
+                    new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID,
+                        new esri.Color([255,0,0]), 1),
+                    new esri.Color([0,255,0,0.25])
+                );
+                var graphic = new esri.Graphic(geo, sms);
+                map.graphics.add(graphic);
+                $.messager.prompt('提示信息', '请输入城市名称', function(name){
+                    $.messager.progress({
+                        text:"新增中，请稍后..."
+                    });                    
+                    var addData = {
+                        "Features":"[{'geometry' : {'x': "+geo.x+", 'y': "+geo.y+"}, 'attributes': {'name':'"+name+"'}}]"
+                    };
+                    $.post(addFeatures,addData,function(result){                       
+                        result = eval("("+result+")");
+                        console.log(result);                        
+                        $.messager.progress('close');
+                        map.centerAndZoom(geo,2);
+                    });                    
+                });
+            }                      
+        });
+    </script>
+</head>
+<body>
+<div id="map">
+    <div class="edit-box">
+        <button id="editbtn">Draw Point</button>
+    </div>
+</div>
+</body>
+</html>

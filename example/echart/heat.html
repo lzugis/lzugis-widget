@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <style>
+        html,body,#main{
+            padding: 0px;
+            margin: 0px;
+            height: 100%;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main"></div>
+<!-- ECharts单文件引入 -->
+<script src="../../plugin/echart/build/dist/echarts.js"></script>
+<script type="text/javascript">
+    require.config({
+        paths: {
+            echarts: '../../plugin/echart/build/dist'
+        }
+    });
+    require(
+            [
+                'echarts',
+                'echarts/chart/heatmap'
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main'));
+                var heatData = [];
+                for (var i = 0; i < 500; ++i) {
+                    heatData.push([
+                        Math.random() * 1440,
+                        Math.random() * 900,
+                        Math.random()
+                    ]);
+                }
+                var option = {
+                    series : [
+                        {
+                            type : 'heatmap',
+                            data : heatData,
+                            hoverable : true,
+                            gradientColors: [{
+                                offset: 0.4,
+                                color: 'green'
+                            }, {
+                                offset: 0.5,
+                                color: 'yellow'
+                            }, {
+                                offset: 0.8,
+                                color: 'orange'
+                            }, {
+                                offset: 1,
+                                color: 'red'
+                            }],
+                            minAlpha: 0.2,
+                            valueScale: 2,
+                            opacity: 0.6
+                        }
+                    ]
+                };
+                // 为echarts对象加载数据
+                myChart.setOption(option);
+            }
+    );
+</script>
+</body>

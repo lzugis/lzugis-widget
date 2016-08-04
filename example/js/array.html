@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type='text/javascript' src='../../plugin/jquery/jquery-1.8.3.js' charset='utf-8'></script>
+</head>
+<body>
+<button id="isarray">isarray</button>
+<button id="tostring">tostring</button>
+<button id="indexOf">indexOf</button>
+<button id="foreach">foreach</button>
+<button id="date">date</button>
+<script>
+    var arr = ["red","green","blue"];
+    var obj = {"red":"red","green":"green","blue":"blue"};
+    var objarr = arr.join("\/");
+    $("#isarray").on("click",function(){
+        console.log(Array.isArray(arr));
+        console.log(Array.isArray(obj));
+    });
+
+    $("#tostring").on("click",function(){
+        console.log(arr.toString());
+        console.log(arr.valueOf());
+        console.log(arr);
+        console.log(typeof(objarr));
+        console.log(objarr);
+        console.log(JSON.stringify(obj));
+        console.log(arr.pop());
+        console.log(arr);
+        console.log(arr.shift());
+        console.log(arr);
+        console.log(arr.unshift("pink","yellow"));
+        console.log(arr);
+        console.log(arr.reverse());
+        arr = arr.concat("lzugis",arr);
+        console.log(arr);
+    });
+    $("#indexOf").on("click",function(){
+        console.log(arr.indexOf("green"));
+        console.log(arr.lastIndexOf("green"));
+        console.log("abcd".indexOf("ab"));//0
+        console.log("abcd".indexOf("ac"));//-1
+    });
+    $("#foreach").on("click",function(){
+        arr.forEach(function(item, index, arr){
+            console.log(item);
+            console.log(index);
+            console.log(arr);
+        });
+        var newarr = arr.filter(function(item, index, arr){
+            console.log(item);
+            console.log(index);
+            console.log(arr);
+            return item!="red";
+        });
+        console.log(newarr);
+    });
+    $("#date").on("click",function(){
+        var date = new Date(Date.now());
+        console.log(date);
+        console.log(date.toString());
+        console.log(date.toLocaleTimeString());
+        console.log(date.toLocaleString());
+        console.log(date.toLocaleDateString());
+        console.log(date.getFullYear());
+        console.log(Date.now().toString());
+    });
+</script>
+</body>
+</html>

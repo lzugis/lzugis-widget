@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello Map</title>
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/esri/css/esri.css">
+    <link rel="stylesheet" href="lib/InfoWindow.css">
+    <style>
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        .titleButton.maximize{
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        var path = this.location.pathname.replace(/\/[^/]+$/, "");
+        var dojoConfig = {
+            parseOnLoad:true,
+            packages: [{
+                "name": "extends",
+                "location": path+"/lib"
+            }]
+        };
+    </script>
+    <script src="http://localhost/arcgis_js_api/library/3.9/3.9/init.js"></script>
+    <script src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script>
+        var map;
+        require([ "dojo/dom",
+                    "dojo/dom-construct",
+                    "esri/map",
+                    "esri/layers/ArcGISTiledMapServiceLayer",
+                    "extends/MyInfowindow",
+                "dojo/domReady!"],
+                function(dom,
+                         domConstruct,
+                         Map,
+                         Tiled,
+                         MyInfowindow){
+                    var popDiv = domConstruct.create("div");
+                    popDiv.style.display="block";
+                    var infoWindow = new  MyInfowindow({
+                        titleInBody: false,
+                        width: 350,
+                        height: 300
+                    },popDiv);
+
+                    map = new Map("map",{
+                        infoWindow: infoWindow,
+                        logo:false
+                    });
+                    var tiled = new Tiled("http://localhost:6080/arcgis/rest/services/china_chahe/MapServer");
+                    map.addLayer(tiled);
+                    var mapCenter = new esri.geometry.Point(103.847, 36.0473, map.spatialReference);
+                    map.centerAndZoom(mapCenter, 1);
+
+                    map.on("click",function(evt){
+                        console.log(evt);
+                        map.infoWindow.setTitle("test");
+                        var content = $("<div />").css("height","200px").html("Content Test");
+                        var content = $("<iframe/>").attr("border","0").attr("src","../../easyui/tab.html")
+                                .css("height","180px").css("width","95%");
+                        map.infoWindow.setContent(content[0]);
+                        map.infoWindow.show(evt.mapPoint);
+                        //resize the info window
+                        map.infoWindow.resize(400, 200);
+                    });
+                });
+    </script>
+</head>
+<body>
+<div id="map"></div>
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>OpenLayers MapQuest Demo</title>
+    <link rel="stylesheet" href="http://openlayers.org/en/v3.15.1/css/ol.css" type="text/css">    
+    <style type="text/css">
+        html, body, #map{
+            padding:0;
+            margin:0;
+            height:100%;
+            width:100%;
+        }
+		#locate{
+			width:25px;
+			height: 25px;
+			background: url("../imgs/locate.png");
+			position: absolute;
+			top: 85px;
+			left: 15px;
+			z-index: 99;
+		}
+		#locate:hover{
+			cursor: pointer;
+		}
+		#location{
+			padding:5px 10px;
+			border-radius:5px;
+			background:rgba(0,60,136,.8);
+			color:#fff;
+			border-shadow:1px 1px 1px #ccc;
+			position: absolute;
+			bottom: 10px;
+			right: 25%;
+			z-index: 99;
+			font-weight:bold;
+			font-family:微软雅黑;
+			display:none;
+		}
+		.ol-attribution{
+			display:none;
+		}
+    </style>
+	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.js"></script>
+    <script src="http://openlayers.org/en/v3.15.1/build/ol.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=wNdy48s7V1izbLL0ziswArXq"></script>
+    <script type="text/javascript">
+        var map, view, posSource, pathSource;
+        var index = 0;
+        function init(){
+			var coor = ol.proj.transform([103.847, 36.0473], 'EPSG:4326', 'EPSG:3857');
+			view = new ol.View({
+					center:coor,
+					zoom:4
+			});
+			posSource = new ol.source.Vector({
+				features: []
+			});
+			pathSource = new ol.source.Vector({
+				features: []
+			});
+			var posVector = getVector(posSource);
+			var pathVector = getVector(pathSource);
+			map = new ol.Map({
+					target:'map',
+					layers:[
+							new ol.layer.Tile({
+									source:new ol.source.XYZ({
+											url:"http://t1.tianditu.com/DataServer?T=vec_w&x={x}&y={y}&l={z}"
+									})
+							}),        
+							new ol.layer.Tile({
+									source:new ol.source.XYZ({
+											url: "http://t1.tianditu.com/DataServer?T=cva_w&x={x}&y={y}&l={z}"
+									})        
+							}),
+						pathVector, posVector
+					],
+					view:view
+			});
+        }
+		function getVector(source){
+        	return new ol.layer.Vector({
+				source:source,
+				style: new ol.style.Style({
+					fill: new ol.style.Fill({
+						color: 'rgba(255, 0, 0, 0.2)'
+					}),
+					stroke: new ol.style.Stroke({
+						color: '#ff0000',
+						width: 3
+					}),
+					image: new ol.style.Icon(({
+						anchor: [0.5, 32],
+						anchorXUnits: 'fraction',
+						anchorYUnits: 'pixels',
+						opacity: 1,
+						src: '../imgs/pos.png'
+					}))
+				})
+			});
+        }
+		var path =[];
+		function showLocation(){
+			if(navigator.geolocation) {
+				var geolocation = new BMap.Geolocation();
+				geolocation.getCurrentPosition(function(r){
+				if(this.getStatus() == BMAP_STATUS_SUCCESS){
+					posSource.clear();
+					pathSource.clear();
+					$("#location").html(index+":"+r.point.lng.toFixed(4)+","+r.point.lat.toFixed(4)).show();
+					var locate = ol.proj.transform([r.point.lng, r.point.lat], 'EPSG:4326', 'EPSG:3857');
+					path.push(locate);
+					view.setCenter(locate);
+					//view.setZoom(18);
+					var feature = new ol.Feature({
+						geometry: new ol.geom.Point(locate)
+					});
+					posSource.addFeature(feature);
+					if(path.length>1){
+						var featurePath = new ol.Feature({
+							geometry: new ol.geom.LineString(path)
+						});
+						pathSource.addFeature(featurePath);
+					}
+					index++;
+				}
+				else {
+					alert("定位失败，失败原因为："+this.getStatus());
+				}
+			},{enableHighAccuracy: true});
+			}
+			else{
+				alert("对不起，您的浏览器不支持定位！");
+			}
+		}
+		
+		var t = 0;
+		function startInterval(){
+			var isrun = $(this).attr("run");
+			if(isrun==="false"){
+				$(this).attr("run","true");
+				//开始定时器
+				t = setInterval(showLocation,5000);
+			}
+			else{
+				$(this).attr("run","false");
+				//停止计时器
+				clearInterval(t);  
+				index=0;
+			}			
+		}
+    </script>
+</head>
+<body onload="init()">
+    <div id="map">
+		<div id="location"></div>
+		<div id="locate" title="点击定位" onclick="startInterval()" run="false"></div>
+	</div>
+</body>
