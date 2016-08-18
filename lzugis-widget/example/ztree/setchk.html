@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../../plugin/jquery/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <script src="../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script src="../../plugin/jquery/ztree/js/jquery.ztree.all-3.5.js"></script>
+    <script>
+        var setting = {
+            check: {
+                enable: true
+            },
+            data: {
+                simpleData: {
+                    enable: true
+                }
+            }
+        };
+        var zNodes =[
+            { id:1, pId:0, name:"随意勾选 1", open:true},
+            { id:11, pId:1, name:"随意勾选 1-1", open:true},
+            { id:111, pId:11, name:"随意勾选 1-1-1"},
+            { id:112, pId:11, name:"随意勾选 1-1-2"},
+            { id:12, pId:1, name:"随意勾选 1-2", open:true},
+            { id:121, pId:12, name:"随意勾选 1-2-1"},
+            { id:122, pId:12, name:"随意勾选 1-2-2"},
+            { id:2, pId:0, name:"随意勾选 2", checked:true, open:true},
+            { id:21, pId:2, name:"随意勾选 2-1"},
+            { id:22, pId:2, name:"随意勾选 2-2", open:true},
+            { id:221, pId:22, name:"随意勾选 2-2-1", checked:true},
+            { id:222, pId:22, name:"随意勾选 2-2-2"},
+            { id:23, pId:2, name:"随意勾选 2-3"}
+        ];
+        $(document).ready(function(){
+            var treeObj = $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+            $("#checked").on("click",function(){
+                var node = treeObj.getNodeByParam("id", 11, null);
+                treeObj.checkNode(node, true, true);
+            });
+            $("#unchecked").on("click",function(){
+                var node = treeObj.getNodeByParam("id", 221, null);
+                treeObj.checkNode(node, false, true);
+            });
+        });
+    </script>
+</head>
+<body>
+    <button id="checked">设置选中</button>
+    <button id="unchecked">取消选中</button>
+    <div id="treeDemo" class="ztree"></div>
+</body>
+</html>

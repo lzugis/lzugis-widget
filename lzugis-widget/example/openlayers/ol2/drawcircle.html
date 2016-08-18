@@ -1,0 +1,116 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>china EPSG:4326 image/png</title>
+    <link rel="stylesheet" href="../../../plugin/OpenLayers-2.13.1/theme/default/style.css" type="text/css">
+    <style type="text/css">
+        body { font-family: sans-serif; font-weight: bold; font-size: .8em; }
+        body { border: 0px; margin: 0px; padding: 0px; }
+        #map { width: 100%; height: 100%; border: 0px; padding: 0px; }
+        .query-box{
+            position: absolute;
+            top: 15pt;
+            right: 15pt;
+            z-index:1001;
+            border: 1px solid #ff0000;
+            border-radius: 3px;
+            background: #f2f2f2;
+            padding: 5px 8px;
+            font-family: "Trebuchet MS", Helvetica, Arial, sans-serif;
+        }
+    </style>
+    <script src="../../../plugin/OpenLayers-2.13.1/OpenLayers.js"></script>
+    <script src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script src="extend/circle.js"></script>
+    <script type="text/javascript">
+        var map, wfs;
+        function init(){
+            var bounds = new OpenLayers.Bounds(
+                    87.57582859314434, 19.969920291221204,
+                    126.56713756740385, 45.693810203800794
+            );
+            var options = {
+                controls: [],
+                maxExtent: bounds,
+                maxResolution: 0.1523098006807012,
+                projection: "EPSG:4326",
+                units: 'degrees'
+            };
+            map = new OpenLayers.Map('map', options);
+
+
+            var tiled = new OpenLayers.Layer.WMS(
+                    "province", "http://localhost:8088/geoserver/lzugis/wms",
+                    {
+                        "LAYERS": 'province',
+                        "STYLES": '',
+                        format: 'image/png'
+                    },
+                    {
+                        buffer: 0,
+                        displayOutsideMaxExtent: true,
+                        isBaseLayer: true,
+                        yx : {'EPSG:4326' : true}
+                    }
+            );
+            map.addLayer(tiled);
+            map.addControl(new OpenLayers.Control.PanZoomBar({
+                position: new OpenLayers.Pixel(2, 15)
+            }));
+            map.addControl(new OpenLayers.Control.Navigation());
+            map.zoomToExtent(bounds);
+            var drawLayer = new OpenLayers.Layer.Vector("drawLayer",{
+                styleMap: new OpenLayers.StyleMap()
+            });
+            var showLayer = new OpenLayers.Layer.Vector("showLayer",{
+                styleMap: new OpenLayers.StyleMap({'default':{
+                 strokeColor: "#ff0000",
+                 strokeOpacity: 1,
+                 strokeWidth: 1,
+                 fillColor: "#000000",
+                 fillOpacity: 0.1
+                 }})
+            });
+            map.addLayers([drawLayer,showLayer]);
+            var drawCtrl = new OpenLayers.Control.DrawFeature(drawLayer, OpenLayers.Handler.Point);
+            map.addControl(drawCtrl);
+            drawCtrl.featureAdded = onEndDraw;
+            function onEndDraw(feature){
+                drawCtrl.deactivate();
+                drawLayer.setVisibility(true);
+                var start = feature.geometry;
+                drawLayer.addFeatures(start);
+                var circle,moveEvt;
+                map.events.register("mousemove",map,function(e){
+                    moveEvt = e;
+                    drawLayer.removeAllFeatures();
+                    var pt = map.getLonLatFromPixel(new OpenLayers.Pixel(e.x, e.y));
+                    var end = new OpenLayers.Geometry.Point(pt.lon, pt.lat);
+                    var line = new OpenLayers.Geometry.LineString([start, end]);
+                    var radius = line.getLength();
+                    var geometry = createCircle(start,radius,100,0);
+                    var feature = new OpenLayers.Feature.Vector(geometry);
+                    circle = feature;
+                    drawLayer.addFeatures(feature);
+                });
+                map.events.register("click",map,function(e){
+                    showLayer.removeAllFeatures();
+                    showLayer.addFeatures(circle);
+                    drawLayer.setVisibility(false);
+                });
+            }
+            $("#draw").on("click",function(){
+                drawLayer.removeAllFeatures();
+                showLayer.removeAllFeatures();
+                drawCtrl.activate();
+            });
+        }
+    </script>
+</head>
+<body onLoad="init()">
+<div class="query-box">
+    <button id="draw">画圆</button>
+</div>
+<div id="map"></div>
+</body>
+</html>

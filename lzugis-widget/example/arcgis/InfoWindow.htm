@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>InfoWindow</title>
+    <script src="dojo/jsapi_vsdoc10_v38.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/dojo/dijit/themes/tundra/tundra.css">
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/esri/css/esri.css">
+    <style>
+        html, body, #map {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+    <script src="http://localhost/arcgis_js_api/library/3.9/3.9/init.js"></script>
+    <script type="text/javascript">
+        dojo.require("esri.map");
+        dojo.require("esri.tasks.query");
+        var map, queryTask, query, infoTemplate, highlightSymbol;
+        function init() {
+            map = new esri.Map("map");
+            var myDynamicMapServiceLayer = new esri.layers.ArcGISDynamicMapServiceLayer("http://localhost:6080/arcgis/rest/services/SampleWorldCities/MapServer");
+            map.addLayer(myDynamicMapServiceLayer);
+            //实例化QueryTask，查询图层0，也就是city图层
+            queryTask = new esri.tasks.QueryTask("http://localhost:6080/arcgis/rest/services/SampleWorldCities/MapServer/0");
+            //查询参数
+            query = new esri.tasks.Query();
+            //需要返回Geometry
+            query.returnGeometry = true;
+            //需要返回的字段
+            query.outFields = ["CITY_NAME", "POP"];
+            //查询条件
+            query.where = "POP > 5000000";
+            //点高亮显示样式
+            highlightSymbol = new esri.symbol.SimpleMarkerSymbol(esri.symbol.SimpleMarkerSymbol.STYLE_DIAMOND, 15, new esri.symbol.SimpleLineSymbol(esri.symbol.SimpleLineSymbol.STYLE_SOLID, new dojo.Color([0, 0, 0]), 1), new dojo.Color([255, 0, 0, 0.5]));
+            //信息模板
+            infoTemplate = new esri.InfoTemplate("Result", "<tr><td>${CITY_NAME} </td><td>${POP} </td></tr>");
+            //进行查询，完成后调用showResults方法
+            queryTask.execute(query, ShowResults);
+        }
+        function ShowResults(featureSet) {
+            //queryTask执行后会返回一个featureSet
+            var features = featureSet.features;
+            //遍历查询结果把结果以点默认显示样式添加到map的GraphicsLayer中进行显示
+            for (var i = 0; i < features.length; i++) {
+                map.graphics.add(features[i].setSymbol(highlightSymbol).setInfoTemplate(infoTemplate));
+            }
+        }
+        dojo.addOnLoad(init);
+    </script>
+</head>
+<body>
+    <div id="map">
+    </div>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>lzugis widget demo</title>
+    <link rel="stylesheet" href="plugin/prettify/css/prettify.css" type="text/css">
+    <link rel="stylesheet" href="plugin/jquery/layout/css/layout-default-latest.css" type="text/css">
+    <link rel="stylesheet" href="plugin/jquery/UI/css/jquery-ui-1.8.16.custom.css" type="text/css">
+    <link rel="stylesheet" href="plugin/jquery/ztree/css/zTreeStyle/zTreeStyle.css" type="text/css">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <style>
+        html, body {
+            font-family: 微软雅黑,Geneva, Arial, Helvetica, sans-serif;
+            font-size:   80%;
+            margin: 0;
+            padding: 0px;
+            height: 100%;
+        }
+        .ui-layout-west,.ui-layout-center,.ui-layout-south{
+            border: none;
+            padding: 0px;
+        }
+        .ui-layout-center{
+            overflow: hidden;
+        }
+        #banner,#footer{
+            background: #3387CC;
+            border: none;
+            overflow: hidden;
+            font-family:"微软雅黑";
+            color: #fff;
+        }
+        #banner{
+            font-size: 14pt;
+            font-weight: bold;
+            padding-left: 20px;
+            padding-top: 8px;
+            overflow: hidden;
+        }
+        #footer{
+            text-align: center;
+            font-size: 12px;
+            letter-spacing: 2px;
+            padding-bottom: 5px;
+            padding-top: 3px;
+        }
+        #ztree{
+            overflow: auto;
+            background: #ffffff;
+        }
+        #effectDiv, #codeDiv{
+            overflow: hidden;
+        }
+        .box-title{
+            margin: 3px;
+            margin-right: 0px;
+            padding: 3px 8px;
+            background:#ddd;
+            font-weight: bold;
+        }
+        #effect{
+            padding: 8px;
+            overflow: hidden;
+        }
+        .ztree li{
+            background: #ffffff;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<DIV class="ui-layout-north" id="banner">LZUGIS DEMO</DIV>
+<DIV class="ui-layout-west">
+    <div id="ztree" class="ztree"></div>
+</DIV>
+<DIV class="ui-layout-center">
+    <DIV class="ui-layout-center" id="effectDiv">
+        <div class="box-title">效果展示<a id="effecthref" style="margin-left: 10px; font-weight: normal;color: red;">页面地址：</a></div>
+        <div id="effect">
+            <iframe id="ifmeffect" src="" style="border: none;width: 100%;height: 100%;"></iframe>
+        </div>
+    </DIV>
+    <DIV class="ui-layout-south" id="codeDiv">
+        <div  class="box-title">代码展示</div>
+        <pre id="prettyprint" class="prettyprint linenums" style="height:200px;overflow: auto; background: #ffffff; padding: 8px;"></pre>
+    </DIV>
+</DIV>
+<DIV class="ui-layout-south"  id="footer">CopyRight @ LZUGIS</DIV>
+
+<script src="plugin/jquery/jquery-1.8.3.min.js"></script>
+<script src="plugin/prettify/js/prettify.js"></script>
+<script src="plugin/jquery/layout/js/jquery.layout-latest.js"></script>
+<script src="plugin/jquery/UI/js/jquery-ui.js"></script>
+<script src="plugin/jquery/ztree/js/jquery.ztree.all-3.5.js"></script>
+<script src="js/index.js"></script>
+<script src="js/treeData.js"></script>
+</body>

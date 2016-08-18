@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Easy UI Demo</title>
+    <link type="text/css" href="../../plugin/jquery/easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="../../plugin/jquery/easyui/themes/icon.css" rel="stylesheet" />
+    <style>
+        #dd{
+            padding: 5px;
+        }
+        table{
+            border-left:dotted 1px #eeeeee;
+            border-top: dotted 1px #eeeeee;
+            width: 100%;
+        }
+        table tr td{
+            border-right: dotted 1px #eeeeee;
+            border-bottom: dotted 1px #eeeeee;
+            padding: 3px 5px;
+        }
+        .input-text{
+            border: 1px solid #a6c9e2;
+            border-radius: 4px;
+            padding: 2px;
+        }
+    </style>
+    <script type="text/javascript" src="../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="../../plugin/jquery/easyui/jquery.easyui.min.js"></script>
+    <script>
+        $(function (){
+            $('#win').window({
+                width:600,
+                height:400,
+                modal:true,
+                maximizable:false,
+                minimizable:false,
+                collapsible:false,
+                closable:true,
+                title:"Win Title"
+            });
+
+            $('#dd').dialog({
+                title: 'My Dialog',
+                width: 400,
+                height: 350,
+                closed: false,
+                cache: false,
+//                href: 'http://localhost',
+                modal: true,
+            /*toolbar: [{
+                    iconCls:'icon-add',
+                    handler:function(){
+                        $.messager.alert('提示','这是一个提示信息！','info',function(){
+                            alert("11111");
+                        });
+                    }
+                },{
+                    iconCls:'icon-save',
+                    handler:function(){
+                        $.messager.confirm('确认','您确认想要保存记录吗？',function(r){
+                            if (r){
+                                alert('保存');
+                            }
+                        });
+                    }
+                }],*/
+                tools: [{
+                    iconCls:'icon-add',
+                    handler:function(){
+                        $.messager.show({
+                            title:'我的消息',
+                            msg:'消息将在5秒后关闭。',
+                            timeout:5000,
+                            showType:'slide'
+                        });
+                    }
+                },{
+                    iconCls:'icon-save',
+                    handler:function(){
+                        $.messager.progress({
+                            interval:100
+                        });
+                    }
+                }],
+                buttons: [{
+                    iconCls:'icon-add',
+                    handler:function(){
+                        $.messager.prompt('提示信息', '请输入你的姓名：', function(r){
+                            if (r){
+                                alert('你的姓名是：' + r);
+                            }
+                        });
+                    }
+                },{
+                    iconCls:'icon-save',
+                    handler:function(){
+                        alert('save');
+                        $('#dd').dialog("close");
+                    }
+                }]
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="win">
+</div>
+
+<div id="dd">
+    <table cellpadding="0" cellspacing="0" class="tab">
+        <tr>
+            <td class="td-title">服务名称：</td>
+            <td style="text-align: center;">
+                <input type="text" class="input-text" style="width: 93%;" placeholder="请输入服务名称">
+            </td>
+        </tr>
+        <tr>
+            <td class="td-title">服务类型：</td>
+            <td style="text-align: center;">
+                <select id="cc" name="dept" class="input-text" style="width: 95%;"><option value="geoserver">Geoserver</option><option value="arcgis">Arcgis Server</option></select>
+            </td>
+        </tr>
+        <tr>
+            <td class="td-title">IP&nbsp;地&nbsp;址：</td>
+            <td style="text-align: center;">
+                <input type="text" class="input-text" style="width: 93%;" placeholder="请输入IP地址">
+            </td>
+        </tr>
+        <tr>
+            <td class="td-title">端&nbsp;口&nbsp;号：</td>
+            <td style="text-align: center;">
+                <input type="text" value="8080" class="input-text" style="width: 93%;" placeholder="请输入端口号">
+            </td>
+        </tr>
+        <tr>
+            <td class="td-title">登录用户：</td>
+            <td style="text-align: center;">
+                <input type="text" class="input-text" style="width: 93%;" placeholder="请输入用户名称">
+            </td>
+        </tr>
+        <tr>
+            <td class="td-title">登录密码：</td>
+            <td style="text-align: center;">
+                <input type="text" class="input-text" style="width: 93%;" placeholder="请输入用户密码">
+            </td>
+        </tr>
+        <tr>
+            <td class="td-title">服务介绍：</td>
+            <td style="text-align: center;">
+                <textarea style="width: 93%;" class="input-text" rows="3"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center;padding: 5px;"><button id="bt2">新增</button></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>

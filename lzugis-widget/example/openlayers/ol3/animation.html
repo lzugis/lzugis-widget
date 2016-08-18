@@ -1,0 +1,193 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>animinate</title>
+	<link rel="stylesheet" type="text/css" href="../../../plugin/ol3/css/ol.css"/>
+	<style type="text/css">
+		body, #map {
+			border: 0px;
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+			height: 100%;
+			font-size: 13px;
+		}
+		.animate-box{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			z-index: 999;
+			padding: 5px 8px;
+			background: #f2f2f2;
+		}
+	</style>
+	<script type="text/javascript" src="../../../plugin/ol3/build/ol-debug.js"></script>
+	<script type="text/javascript" src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		var map;
+		function init(){
+			var format = 'image/png';
+			var untiled = new ol.layer.Image({
+				source: new ol.source.ImageWMS({
+					ratio: 1,
+					url: 'http://localhost:8088/geoserver/lzugis/wms',
+					params: {'FORMAT': format,
+						'VERSION': '1.1.1',
+						LAYERS: 'lzugis:province',
+						STYLES: ''
+					}
+				})
+			});
+			var projection = new ol.proj.Projection({
+				code: 'EPSG:4326',
+				units: 'degrees'
+			});
+			map = new ol.Map({
+				controls: ol.control.defaults({
+					attribution: false
+				}),
+				target: 'map',
+				layers: [untiled],
+				view: new ol.View({
+					projection: projection
+				})
+			});
+			map.getView().setZoom(6);
+			map.getView().setCenter([103.584297498,36.1190864503]);
+			var bj = [116.99527281058961, 40.300720148461906];
+			$("#rotate").on("click",function(){
+				var view = map.getView();
+				var currentRotation = view.getRotation();
+				var rotateAroundRome = ol.animation.rotate({
+					anchor: bj,
+					duration: 1000,
+					rotation: currentRotation
+				});
+				map.beforeRender(rotateAroundRome);
+				view.rotate(currentRotation + (Math.PI / 2), bj);
+			});
+			$("#pan").on("click",function(){
+				var view = map.getView();
+				var pan = ol.animation.pan({
+					duration: 2000,
+					source: /** @type {ol.Coordinate} */ (view.getCenter())
+				});
+				map.beforeRender(pan);
+				view.setCenter(bj);
+			});
+			$("#elastic").on("click",function(){
+				var view = map.getView();
+				var pan = ol.animation.pan({
+					duration: 2000,
+					easing: elastic,
+					source: /** @type {ol.Coordinate} */ (view.getCenter())
+				});
+				map.beforeRender(pan);
+				view.setCenter(bj);
+			});
+			$("#bounce").on("click",function(){
+				var view = map.getView();
+				var pan = ol.animation.pan({
+					duration: 2000,
+					easing: bounce,
+					source: /** @type {ol.Coordinate} */ (view.getCenter())
+				});
+				map.beforeRender(pan);
+				view.setCenter(bj);
+			});
+			$("#spin").on("click",function(){
+				var view = map.getView();
+				var duration = 2000;
+				var start = +new Date();
+				var pan = ol.animation.pan({
+					duration: duration,
+					source: /** @type {ol.Coordinate} */ (view.getCenter()),
+					start: start
+				});
+				var rotate = ol.animation.rotate({
+					duration: duration,
+					rotation: 2 * Math.PI,
+					start: start
+				});
+				map.beforeRender(pan, rotate);
+				view.setCenter(bj);
+			});
+			$("#fly").on("click",function(){
+				var view = map.getView();
+				var duration = 2000;
+				var start = +new Date();
+				var pan = ol.animation.pan({
+					duration: duration,
+					source: /** @type {ol.Coordinate} */ (view.getCenter()),
+					start: start
+				});
+				var bounce = ol.animation.bounce({
+					duration: duration,
+					resolution: 4 * view.getResolution(),
+					start: start
+				});
+				map.beforeRender(pan, bounce);
+				view.setCenter(bj);
+			});
+			$("#spiral").on("click",function(){
+				var view = map.getView();
+				var duration = 2000;
+				var start = +new Date();
+				var pan = ol.animation.pan({
+					duration: duration,
+					source: /** @type {ol.Coordinate} */ (view.getCenter()),
+					start: start
+				});
+				var bounce = ol.animation.bounce({
+					duration: duration,
+					resolution: 2 * view.getResolution(),
+					start: start
+				});
+				var rotate = ol.animation.rotate({
+					duration: duration,
+					rotation: -4 * Math.PI,
+					start: start
+				});
+				map.beforeRender(pan, bounce, rotate);
+				view.setCenter(bj);
+			});
+		}
+		function bounce(t) {
+			var s = 7.5625, p = 2.75, l;
+			if (t < (1 / p)) {
+				l = s * t * t;
+			} else {
+				if (t < (2 / p)) {
+					t -= (1.5 / p);
+					l = s * t * t + 0.75;
+				} else {
+					if (t < (2.5 / p)) {
+						t -= (2.25 / p);
+						l = s * t * t + 0.9375;
+					} else {
+						t -= (2.625 / p);
+						l = s * t * t + 0.984375;
+					}
+				}
+			}
+			return l;
+		}
+		function elastic(t) {
+			return Math.pow(2, -10 * t) * Math.sin((t - 0.075) * (2 * Math.PI) / 0.3) + 1;
+		}
+	</script>
+</head>
+<body onLoad="init()">
+<div id="map">
+	<div class="animate-box">
+		<button id="rotate">Rotate Around Beijing</button>
+		<button id="pan">Pan to Beijing</button>
+		<button id="elastic">Elastic to Beijing</button>
+		<button id="bounce">Bounce to Beijing</button>
+		<button id="spin">Spin Beijing</button>
+		<button id="fly">Fly Beijing</button>
+		<button id="spiral">Spiral Beijing</button>
+	</div>
+</div>
+</body>
+</html>

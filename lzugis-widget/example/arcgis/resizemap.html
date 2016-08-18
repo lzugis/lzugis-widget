@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Simple Map</title>
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/esri/css/esri.css">
+    <style>
+        html, body, #left, #map {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #fff;
+            overflow: hidden;
+            font-family: "Trebuchet MS";
+        }
+        #left{
+            float: left;
+            width:200px;
+            background: #014CC9;
+        }
+        .collapse_btn{
+            position: absolute;
+            top: 50%;
+            left: 0px;
+            z-index: 99;
+        }
+        .collapse_btn_a{
+            padding: 10px 0px;
+            background: #33CCFF;
+            border-radius: 3px;
+        }
+        .collapse_btn_a:hover{
+            cursor: pointer;
+            background: #11aaFF;
+        }
+        #map{
+            position: relative;
+            float: left;
+            width:800px;
+            background: #7EABCD;
+        }
+    </style>
+    <script src="http://localhost/arcgis_js_api/library/3.9/3.9/init.js"></script>
+    <script src="../../plugin/jquery/jquery-1.8.3.js"></script>
+    <script>
+        var map;
+        require([
+            "esri/map",
+            "esri/layers/ArcGISTiledMapServiceLayer",
+            "dojo/on",
+            "dojo/dom",
+            "dojo/domReady!"],
+        function(Map,
+             Tiled,
+             on,
+             dom
+        ) {
+            $("#map").css("width",($(window).width()-200)+"px");
+            map = new Map("map",{logo:false,autoResize:true});
+            var tiled = new Tiled("http://localhost:6080/arcgis/rest/services/china_chahe/MapServer");
+            map.addLayer(tiled);
+            var mapCenter = new esri.geometry.Point(103.847, 36.0473, map.spatialReference);
+            map.centerAndZoom(mapCenter,0);
+            on(dom.byId("collapse_btn"), "click", function(){
+                var collapseState = $("#collapse_btn").html();
+                console.log(collapseState);
+                if(collapseState==="《"){//折叠DIV
+                    console.log(true);
+                    $("#collapse_btn").html("》");
+                    $("#collapse_btn").attr("title","点击展开");
+                    $("#left").hide();
+                    $("#map").css("width",($(window).width())+"px");
+                    map.resize(true);
+                    map.reposition();
+                }
+                else{//展开DIV
+                    console.log(false);
+                    $("#collapse_btn").html("《");
+                    $("#collapse_btn").attr("title","点击折叠");
+                    $("#left").show();
+                    $("#map").css("width",($(window).width()-200)+"px");
+                    map.resize(true);
+                    map.reposition();
+                }
+            });
+        });
+        window.onresize=function(){
+            var collapseState = $("#collapse_btn").html();
+            if(collapseState==="《"){//展开状态
+                $("#map").css("width",($(window).width()-200)+"px");
+                map.resize(true);
+                map.reposition();
+            }
+            else{//折叠状态
+                $("#map").css("width",($(window).width())+"px");
+                map.resize(true);
+                map.reposition();
+            }
+        }
+    </script>
+</head>
+
+<body>
+<div id="left"></div>
+<div id="map">
+    <div class="collapse_btn">
+        <a id="collapse_btn" class="collapse_btn_a" title="点击折叠">《</a>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="http://localhost/arcgis_js_api/library/3.9/3.9/js/dojo/dijit/themes/tundra/tundra.css" type="text/css">
+    <script src="http://localhost/arcgis_js_api/library/3.9/3.9/init.js"></script>
+    <script>
+        require([
+            "dojox/charting/Chart2D",
+            "dojox/charting/action2d/Tooltip",
+            "dojox/charting/action2d/Highlight",
+            "dojox/charting/themes/PlotKit/red",
+            "dojo/domReady!"
+        ], function(
+                Chart2D,
+                Tooltip,
+                Highlight,
+                themes
+        ){
+            var chartData1 = [5000,2000,3000,200,255,2402,2500];
+            var chart = new Chart2D("barchart",{
+                title: "销售比例图",
+                titlePos: "top"
+            });
+            chart.addPlot("default", {
+                type: "Columns", // our plot2d/Pie module reference as type value
+                markers: true,
+                gap:5
+            });
+            var _themes = dojox.charting.themes.PlotKit.red;
+            _themes.chart.fill = "transparent";
+            _themes.chart.stroke = "transparent";
+            _themes.plotarea.fill = "transparent";
+            chart.setTheme(_themes);
+            var  xStr = ["周一","周二","周三","周四","周五","周六","周日"];
+            var myLabelFunc = function(text, value, precision){
+                return xStr[text-1];
+            };
+            chart.addAxis("x", { labelFunc: myLabelFunc});
+            chart.addAxis("y", { type: "Invisible", vertical:true,min: 0});
+            chart.addSeries("chartData",chartData1,{stroke:{color: "#ffffff",width:1}, fill: "#e87717"});
+            new Highlight(chart, "default", {highlight: "lightskyblue"});
+            new Tooltip(chart, "default");
+            chart.render();
+        });
+    </script>
+</head>
+<body  class="tundra">
+<div id="barchart" style="width: 300px; height: 250px;"></div>
+<div id="legend"></div>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Ol3 popup</title>
+	<link rel="stylesheet" type="text/css" href="../../../plugin/ol3/css/ol.css"/>
+	<style type="text/css">
+		body, #map {
+			border: 0px;
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+			height: 100%;
+			font-size: 13px;
+		}
+		.ol-popup {
+			display: none;
+			position: absolute;
+			background-color: white;
+			-moz-box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+			-webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+			filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+			border: 1px solid #cccccc;
+			bottom: 12px;
+			left: -50px;
+			width: 200px;
+		}
+		.ol-popup:after, .ol-popup:before {
+			top: 100%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+		.ol-popup:after {
+			border-top-color: white;
+			border-width: 10px;
+			left: 48px;
+			margin-left: -10px;
+		}
+		.ol-popup:before {
+			border-top-color: #cccccc;
+			border-width: 11px;
+			left: 48px;
+			margin-left: -11px;
+		}
+		.popup-title{
+			font-weight: bold;
+			border-bottom:1px solid #cccccc;
+			padding: 5px 8px;
+		}
+		.popup-content{
+			padding: 5px 8px;
+		}
+		.ol-popup-closer {
+			text-decoration: none;
+			position: absolute;
+			top: 6px;
+			right: 6px;
+		}
+		.ol-popup-closer:after {
+			content: "×";
+		}
+	</style>
+	<script type="text/javascript" src="../../../plugin/ol3/build/ol-debug.js"></script>
+	<script type="text/javascript" src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		function init(){
+			var format = 'image/png';
+			var bounds = [73.4510046356223, 18.1632471876417,
+				134.976797646506, 53.5319431522236];
+			var untiled = new ol.layer.Image({
+				source: new ol.source.ImageWMS({
+					ratio: 1,
+					url: 'http://localhost:8088/geoserver/lzugis/wms',
+					params: {'FORMAT': format,
+						'VERSION': '1.1.1',
+						LAYERS: 'lzugis:capital',
+						STYLES: ''
+					}
+				})
+			});
+			var projection = new ol.proj.Projection({
+				code: 'EPSG:4326',
+				units: 'degrees'
+			});
+			var container = document.getElementById('popup');
+			var content = document.getElementById('popup-content');
+			var title = document.getElementById('popup-title');
+			var closer = document.getElementById('popup-closer');
+			closer.onclick = function(){
+				container.style.display = 'none';
+				closer.blur();
+				return false;
+			};
+
+			var map = new ol.Map({
+				controls: ol.control.defaults({
+					attribution: false
+				}),
+				target: 'map',
+				layers: [untiled],
+//				overlays: [overlay],
+				view: new ol.View({
+					projection: projection
+				})
+			});
+			map.getView().fitExtent(bounds, map.getSize());
+			var overlay = new ol.Overlay({
+				element: container
+			});
+			map.addOverlay(overlay);
+			map.on('click', function(evt) {
+				var coordinate = evt.coordinate;
+				var hdms = ol.coordinate.toStringHDMS(ol.proj.transform(
+						coordinate, 'EPSG:4326', 'EPSG:4326'));
+				overlay.setPosition(coordinate);
+				content.innerHTML = '<p>You clicked here:</p><code>' + hdms +
+				'</code>';
+				container.style.display = 'block';
+				title.innerHTML = "提示信息";
+				title.style.display = 'block';
+				map.getView().setCenter(coordinate);
+			});
+		}
+	</script>
+</head>
+<body onLoad="init()">
+<div id="map">
+	<div id="popup" class="ol-popup">
+		<a href="#" id="popup-closer" class="ol-popup-closer"></a>
+		<div id="popup-title" class="popup-title"></div>
+		<div id="popup-content" class="popup-content"></div>
+	</div>
+</div>
+</body>
+</html>

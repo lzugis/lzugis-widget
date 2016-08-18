@@ -1,0 +1,127 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Ol3 plot</title>
+	<link rel="stylesheet" type="text/css" href="../../../plugin/ol3/css/ol.css"/>
+	<style type="text/css">
+		body, #map {
+			border: 0px;
+			margin: 0px;
+			padding: 0px;
+			width: 100%;
+			height: 100%;
+			font-size: 13px;
+		}
+		#menu{
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			background: rgba(100, 100, 100, 0.85);
+			padding: 10px;
+			color: #cccccc;
+			z-index: 999;
+		}
+	</style>
+	<script type="text/javascript" src="../../../plugin/ol3/closure-library/third_party/closure/goog/base.js"></script>
+	<script type="text/javascript" src="../../../plugin/ol3/build/ol-debug.js"></script>
+	<script type="text/javascript" src="../../../plugin/ol3/plugin/plot4ol3.js"></script>
+	<script type="text/javascript" src="../../../plugin/jquery/jquery-1.8.3.js"></script>
+	<script type="text/javascript">
+		var map, plotDraw, drawOverlay, drawStyle;
+		function init(){
+			var format = 'image/png';
+			var bounds = [73.4510046356223, 18.1632471876417,
+				134.976797646506, 53.5319431522236];
+			var untiled = new ol.layer.Image({
+				source: new ol.source.ImageWMS({
+					ratio: 1,
+					url: 'http://localhost:8088/geoserver/lzugis/wms',
+					params: {'FORMAT': format,
+						'VERSION': '1.1.1',
+						LAYERS: 'lzugis:province',
+						STYLES: ''
+					}
+				})
+			});
+			var tiled = new ol.layer.Tile({
+				visible: true,
+				source: new ol.source.TileWMS({
+					url: 'http://localhost:8088/geoserver/lzugis/wms',
+					params: {'FORMAT': format,
+						'VERSION': '1.1.1',
+						tiled: true,
+						LAYERS: 'lzugis:capital',
+						STYLES: ''
+					}
+				})
+			});
+			var projection = new ol.proj.Projection({
+				code: 'EPSG:4326',
+				units: 'degrees'
+			});
+			map = new ol.Map({
+				controls: ol.control.defaults({
+					attribution: false
+				}),
+				target: 'map',
+				layers: [
+					untiled,
+					tiled
+				],
+				view: new ol.View({
+					projection: projection
+				})
+			});
+			map.getView().fitExtent(bounds, map.getSize());
+
+			plotDraw = new gispace.tool.PlotDraw(map);
+			plotDraw.on(gispace.event.PlotDrawEvent.DRAW_END, onDrawEnd, false, this);
+			var stroke = new ol.style.Stroke({color: '#FF0000', width: 2});
+			var fill = new ol.style.Fill({color: 'rgba(0,255,0,0.4)'});
+			drawStyle = new ol.style.Style({fill:fill, stroke:stroke});
+			drawOverlay = new ol.FeatureOverlay();
+			drawOverlay.setStyle(drawStyle);
+			drawOverlay.setMap(map);
+		}
+		function onDrawEnd(event){
+			var feature = event.feature;
+			drawOverlay.addFeature(feature);
+		}
+		function activate(type){
+			plotDraw.activate(type);
+		};
+	</script>
+</head>
+<body onLoad="init()">
+<div id="map">
+	<div id="location"></div>
+	<div id="menu">
+		<div>
+			线标
+			<button type="button" onclick="activate(gispace.PlotTypes.ARC)">弧线</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.CURVE)">曲线</button>
+		</div>
+		<div>
+			面标
+			<button type="button" onclick="activate(gispace.PlotTypes.CIRCLE)">圆</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.ELLIPSE)">椭圆</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.LUNE)">弓形</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.SECTOR)">扇形</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.CLOSED_CURVE)">曲线面</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.GATHERING_PLACE)">集结地</button>
+		</div>
+		<div>
+			箭头
+			<button type="button" onclick="activate(gispace.PlotTypes.DOUBLE_ARROW)">钳击</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.STRAIGHT_ARROW)">直箭头</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.FINE_ARROW)">细直箭头</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.ASSAULT_DIRECTION)">突击方向</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.ATTACK_ARROW)">进攻方向</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.TAILED_ATTACK_ARROW)">进攻方向（尾）</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.SQUAD_COMBAT)">分队战斗行动</button>
+			<button type="button" onclick="activate(gispace.PlotTypes.TAILED_SQUAD_COMBAT)">分队战斗行动（尾）</button>
+		</div>
+	</div>
+</div>
+</body>
+</html>
