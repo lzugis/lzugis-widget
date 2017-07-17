@@ -1,0 +1,699 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="cef4b75b-bc58-4713-b164-b10734cbba87" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/.gitattributes" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/InfoWindow.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/addlayer/dynamic.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/addlayer/featurelayer.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/addlayer/geojson.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/addlayer/tile.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/addlayer/wkt.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/addlayer/wms.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/buffergp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/data.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/data/capital.geojson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/dynapath.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/editing_tool_bar.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/eraseajaxgp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/erasegp.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/geocode.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/geojson.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/gpspline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/images/blue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/images/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lbl.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/legend.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/WKTUtil.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/accordion_arrows_white.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/jquery.easyui.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/jquery.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/jsonConverters.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/mapTran.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/easyloader.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.accordion.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.calendar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.combobox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.datebox.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.draggable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.droppable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.form.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.linkbutton.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.menu.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.parser.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.progressbar.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.propertygrid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.resizable.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.slider.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.tabs.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/src/jquery.window.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/black/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/icon_downarrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/icon_qp.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/icon_uparrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/left_list_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/left_list_bghover.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/right_downtitle_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bluegreen/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/bootstrap/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/color.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/default/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/gray/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icon.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/back.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/cancel.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/clear.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/cut.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/edit_add.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/edit_remove.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/filesave.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/filter.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/help.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_bh_d.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_bh_m.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_bh_x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_bjgj_bc.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_bjgj_sc.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_bjgj_tz.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_bjgj_xz.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_datagrid.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_downarrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_excel.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_fullwin.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_hzgj_d.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_hzgj_m.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_hzgj_x.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_image.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_multi_win.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_nofullwin.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_qp.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_toolbar_bh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_toolbar_bj.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_toolbar_fullwin2.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_uparrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/icon_word.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/large_chart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/large_clipart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/large_picture.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/large_shapes.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/large_smartart.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/lock.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/man.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_icon_bz.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_icon_cj.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_icon_cm.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_icon_move.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_icon_qc.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_icon_qt.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_point_query.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_rect_query.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_zoom_in.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/map_zoom_out.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/mini_add.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/mini_edit.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/mini_refresh.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/more.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/no.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/ok.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/pencil.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/print.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/redo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/reload.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/search.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/space_go.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/sum.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/tip.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/icons/undo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/accordion.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/calendar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/combo.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/combobox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/datagrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/datalist.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/datebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/dialog.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/easyui.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/filebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/accordion_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/blank.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/calendar_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/combo_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/datagrid_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/datebox_arrow.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/layout_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/linkbutton_bg.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/menu_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/messager_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/pagination_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/searchbox_button.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/slider_handle.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/spinner_arrows.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/tabs_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/tree_icons.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/images/validatebox_warning.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/layout.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/linkbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/menu.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/menubutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/messager.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/numberbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/pagination.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/panel.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/progressbar.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/propertygrid.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/searchbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/slider.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/spinner.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/splitbutton.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/tabs.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/textbox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/tooltip.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/tree.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/validatebox.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/metro/window.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/lib/themes/mobile.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/mapchart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/mapchart/MapChartGraphic.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/mapchart/MapChartGraphicLayer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/marker.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/measure.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/navigationToolbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/query.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/query1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/resizemap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/scalebar.htm" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/subway/chg_stat.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/subway/esri.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/subway/init.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/subway/jquery-1.8.3.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/subway/map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/subway/map.html.bak" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/subway/sh_sub_data.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/subway/sh_sub_data.js.bak" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/toctool.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/arcgis/wms.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/canvas/rect.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/areachart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/barchart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/clusterbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/clustercolumn.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/columnchart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/linechart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/piechart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/stackarea.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/stackbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/dojochart/stackcolumn.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/accordion.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/buttons.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/datagrid.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/dragresize.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/json/datagrid_data.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/json/tree_data.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/layout.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/menubutton.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/panel.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/spinner.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/tab.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/tooltips.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/tree.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/easyui/windows.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/echart/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/3dbubble.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/3dcolumnchart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/3dpiechart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/3dpiedonut.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/3dstackcolumn.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/areachart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/arealine.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/arearange.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/areaspline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/barchart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/bubble.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/columnchart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/credits.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/export.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/labelline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/line.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/piechart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/spline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/stackarea.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/highcharts/stackbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/accordion.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/buttons.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/datepickers.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/fileinput.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/menu.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/modaldialog.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/progressbar.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/slider.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/jqueryui/tab.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/leaflet/map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/agscache.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/bdpoi.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/chart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/cluster.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/cursor.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/data/capital.geojson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/drawcircle.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/edit.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/extend/AgsTileLayer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/extend/LabelLayer.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/extend/circle.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/extend/heatmap-openlayers.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/extend/heatmap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/fullscreen.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/geojson.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/heatmap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/img/blue.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/img/closedhand.cur" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/img/openhand.cur" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/img/panel_tools.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/img/red.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/multimap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/public_map/TiandituLayer-src.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/public_map/tdt.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/public_map/tdtoffline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/public_map/tdtonline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/vector.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/wfs.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol2/wms.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/animation.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/chart.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/cluster.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/cluster1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/control.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/data/capital.geojson" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/data/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/draw.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/geojson.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/icon.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/measure.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/modify.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/multimap.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/plot.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/popup.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/public_map/tdt.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/public_map/tdtoffline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/public_map/tdtonline.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/select.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/swipe.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/wkt.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/openlayers/ol3/wms.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/css/main.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/css/style1.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/css/style2.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/js/css.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/js/css.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/js/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/js/jquery.plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/js/main.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/js/plugin.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/js/require.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/js/test.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/require/require.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/supermap/map.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/ztree/chkbox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/ztree/clickTree.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/ztree/radiotree.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/ztree/setchk.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/ztree/simpleData.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/ztree/standardData.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/example/ztree/userIcon.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/js/index.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/js/treeData.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/lzugis-widget/readme.txt" afterPath="" />
+    </list>
+    <ignored path="$PROJECT_DIR$/.tmp/" />
+    <ignored path="$PROJECT_DIR$/temp/" />
+    <ignored path="$PROJECT_DIR$/tmp/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-8" />
+    <option name="width" value="1932" />
+    <option name="height" value="1038" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lzugis-widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lzugis-widget" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="HbShouldOpenHtmlAsHb" value="" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="cef4b75b-bc58-4713-b164-b10734cbba87" name="Default" comment="" />
+      <created>1500263111918</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1500263111918</updated>
+      <workItem from="1500263113277" duration="134000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="134000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="0" width="1932" height="1038" extended-state="0" />
+    <layout>
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24973877" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="processedProjectFiles" value="true" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+</project>
